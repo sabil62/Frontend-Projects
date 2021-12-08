@@ -2,15 +2,19 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  /* background-image: url(./assets/pattern.png); */
+  background-image: url(assets/dot-grid.png);
+  background-repeat: repeat;
+  color: #0b083a;
 }
 .table-section {
-  width: 900px;
+  width: 864px;
   margin: 0 auto;
 }
 
 .main-title {
   color: #130f49;
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   margin-bottom: 24px;
 }
 .mid-table-section {
@@ -18,19 +22,39 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 1.4rem;
 }
 
 .table-actual {
-  border-collapse: separate;
+  border-collapse: collapse;
+  width: 100%;
+  /* font-size: 0.86rem; */
   /* border-spacing: 30px 10px; */
 }
 .name-section {
-  font-size: 1.1rem;
+  font-size: 1.02rem;
   font-weight: 600;
 }
-td {
-  padding: 4px 20px 6px 4px;
+a {
+  text-decoration: none;
 }
+td {
+  padding: 10px 80px 10px 30px;
+  font-size: 0.86rem;
+}
+th {
+  text-align: left;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  font-weight: 1.1rem;
+}
+tr {
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+tr:nth-child(even) {
+  background-color: aliceblue;
+}
+
 /* tr {
   border-bottom: 4px solid black;
 } */
