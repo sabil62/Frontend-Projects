@@ -7,23 +7,44 @@
 
 body {
   font-family: "Poppins", sans-serif;
-
   background-image: url(../../assets/pattern.png);
   background-repeat: repeat;
   color: #0b083a;
 }
 .center-text {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 700;
   margin: 1.6rem 0 1rem 0;
 }
 .comparison-main {
   width: 92%;
   margin: auto;
-  background-color: antiquewhite;
 }
-.half-width {
-  width: 49%;
+.quater-width {
+  width: 400px;
   display: inline-block;
+  margin-left: 36%;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 6px 12px;
+  border-radius: 5.4px;
+}
+
+h1 {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.image-shadow {
+  box-shadow: rgba(0, 0, 0, 0.11) 0px 5px 12px;
+}
+
+a {
+  text-decoration: underline;
+  text-align: center;
+  display: block;
+  color: rgb(88, 3, 3);
+  font-size: 0.9rem;
+}
+a:hover {
+  color: rgb(211, 43, 43);
 }
