@@ -12,7 +12,12 @@
   <body>
     <div class="nav">
       <div class="navbar container clearfix">
-        <img src="./images/main logo.png" alt="mainlogo" class="main-logo" />
+        <img
+          src="./images/main logo.png"
+          alt="mainlogo"
+          class="main-logo"
+          onclick="goToRepo()"
+        />
         <span class="search-part clearfix">
           <div class="search-area left-float">
             <img
@@ -39,7 +44,7 @@
               alt="searchButtonLeft"
               class="left-float"
             />
-            <span>SEARCH</span>
+            <span onclick="goToRepo()">SEARCH</span>
             <img
               src="./images/search-right.png"
               alt="searchButtonRight"
@@ -70,20 +75,20 @@
     <section class="navbar-secondary">
       <div class="container clearfix">
         <div class="left-float navbar-secondary-inside">
-          <span>Create New Entry</span>
-          <span>My Topic Boxes</span>
-          <span>Friends</span>
-          <span>Invite New Member</span>
+          <span onclick="goToRepo()">Create New Entry</span>
+          <span onclick="goToRepo()">My Topic Boxes</span>
+          <span onclick="goToRepo()">Friends</span>
+          <span onclick="goToRepo()">Invite New Member</span>
         </div>
         <div class="right-float">
-          <div class="topic-boxes">
+          <div class="topic-boxes" onclick="goToRepo()">
             <div style="display: inline-block; margin-top: 3px">
               <img src="./images/topic-icon.png" alt="topics" />
             </div>
 
             Topic Boxes Invites - 2
           </div>
-          <div class="friend-req">
+          <div class="friend-req" onclick="goToRepo()">
             <div class="profile-icon"></div>
             Friend Requests - 0
           </div>
@@ -97,41 +102,47 @@
           <div class="blue-section">Recent Searches</div>
           <div class="side-topics">
             <div class="download-icon">
-              <span style="width: 110px">Nick Cave and the Bad Seeds</span>
+              <span style="width: 110px" onclick="goToRepo()"
+                >Nick Cave and the Bad Seeds</span
+              >
             </div>
           </div>
           <div class="side-topics">
-            <div class="download-icon"><span>African Animals</span></div>
+            <div class="download-icon">
+              <span onclick="goToRepo()">African Animals</span>
+            </div>
           </div>
           <div class="blue-section">Recent Searches</div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span>Different versions of the Tristan Und Isolde Prelude</span>
+              <span onclick="goToRepo()"
+                >Different versions of the Tristan Und Isolde Prelude</span
+              >
             </div>
           </div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span> Music </span>
+              <span onclick="goToRepo()"> Music </span>
             </div>
           </div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span> Guitar </span>
+              <span onclick="goToRepo()"> Guitar </span>
             </div>
           </div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span> Bob Cohen </span>
+              <span onclick="goToRepo()"> Bob Cohen </span>
             </div>
           </div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span> Mark Schnack </span>
+              <span onclick="goToRepo()"> Mark Schnack </span>
             </div>
           </div>
           <div class="side-topics">
             <div class="hamburger-icon">
-              <span> Jefferson Dickey </span>
+              <span onclick="goToRepo()"> Jefferson Dickey </span>
             </div>
           </div>
         </section>
@@ -143,13 +154,13 @@
               <div class="two-buttons clearfix">
                 <div class="button-blue">
                   <div class="left-float button-blue-left"></div>
-                  <div class="inside">All members</div>
+                  <div class="inside" onclick="goToRepo()">All members</div>
 
                   <div class="right-float button-blue-right"></div>
                 </div>
                 <div class="button-grey">
                   <div class="left-float button-grey-left"></div>
-                  <div class="inside">Friends</div>
+                  <div class="inside" onclick="goToRepo()">Friends</div>
 
                   <div class="right-float button-grey-right"></div>
                 </div>
@@ -160,12 +171,14 @@
               <div class="two-buttons clearfix">
                 <div class="button-grey">
                   <div class="left-float button-grey-left"></div>
-                  <div class="inside">New Entries</div>
+                  <div class="inside" onclick="goToRepo()">New Entries</div>
                   <div class="right-float button-grey-right"></div>
                 </div>
                 <div class="button-grey">
                   <div class="left-float button-grey-left"></div>
-                  <div class="inside-long left-float">New Comments</div>
+                  <div class="inside-long left-float" onclick="goToRepo()">
+                    New Comments
+                  </div>
 
                   <div class="right-float button-grey-right"></div>
                 </div>
@@ -264,17 +277,35 @@
         </section>
         <section class="right-sidebar">
           <div class="blue-section">Video Tutorials</div>
-          <div class="side-topics-right" style="padding-top: 18px">
+          <div
+            class="side-topics-right"
+            style="padding-top: 18px"
+            onclick="goToRepo()"
+          >
             Overview of TUTangle
           </div>
-          <div class="side-topics-right">Searching the Site</div>
-          <div class="side-topics-right">Pervious & Saved Searches</div>
-          <div class="side-topics-right">The Topic Box Page</div>
-          <div class="side-topics-right">Creating a Topic Box</div>
-          <div class="side-topics-right">View Topic Box Entries</div>
-          <div class="side-topics-right">Creating an Entry</div>
-          <div class="side-topics-right">Privacy Settings</div>
-          <div class="side-topics-right">Co-Authoring</div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Searching the Site
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Pervious & Saved Searches
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            The Topic Box Page
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Creating a Topic Box
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            View Topic Box Entries
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Creating an Entry
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Privacy Settings
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">Co-Authoring</div>
         </section>
       </div>
     </section>
@@ -295,5 +326,20 @@
         <div class="copyright right-float">&copy; TuTangle 2013</div>
       </div>
     </footer>
+    <div class="popup" id="pop">
+      <div>Click any button to access the repo</div>
+    </div>
+    <script>
+      function goToRepo() {
+        // let url = "https://sabil62.github.io/leapfrog/Design/1Tutangles";
+        let url =
+          "https://github.com/sabil62/leapfrog/tree/main/Design/1Tutangles";
+        location.href = url;
+      }
+      let popup = document.getElementById("pop");
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 3300);
+    </script>
   </body>
 </html>
