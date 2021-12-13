@@ -223,3 +223,27 @@ body {
 .side-topics-right:hover {
   background-color: white;
 }
+
+/* ----------------footer--------------- */
+.footer {
+  height: 45px;
+  background-color: #727272;
+  color: white;
+  font-size: 13px;
+}
+.footer-about ul.about li {
+  float: left;
+  width: auto;
+  margin: 0 10.2px;
+}
+.footer-about ul.about {
+  list-style-type: disc;
+}
+
+.footer-about ul.about li a {
+  text-decoration: none;
+  color: white;
+}
+.footer-about ul.about li a:hover {
+  color: blue;
+}
