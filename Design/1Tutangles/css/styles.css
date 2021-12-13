@@ -111,6 +111,7 @@ body {
 .topic-boxes {
   display: inline-block;
   cursor: pointer;
+  font-size: 12px;
   /* padding: 13.2px 12px; */
 }
 .topic-boxes:hover {
@@ -118,8 +119,10 @@ body {
 }
 .friend-req {
   display: inline-block;
-  padding: 10.2px 0 13.2px 12px;
+  padding: 8px 0 13.2px 20px;
   cursor: pointer;
+  color: #919191;
+  font-size: 11px;
 }
 
 .friend-req .profile-icon {
@@ -136,4 +139,87 @@ body {
 
 .friend-req:hover .profile-icon {
   background-image: url(../images/profile-blue.png);
+}
+
+/* --------main-section------------ */
+.main-container {
+  margin: 30px 0;
+}
+.main-container-padding {
+  padding: 0 31px 0px 33px;
+  box-sizing: border-box;
+}
+.left-sidebar {
+  width: 194px;
+  height: 605px;
+  background-color: #f5f5f5;
+  float: left;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #323133;
+}
+.middle-section {
+  width: 518px;
+  float: left;
+}
+.right-sidebar {
+  float: right;
+  width: 176px;
+  height: 605px;
+  background-color: #f5f5f5;
+}
+.blue-section {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  background-color: #2fc1da;
+  height: 42px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 12px;
+  cursor: pointer;
+}
+.side-topics {
+  padding: 11px 0px 11px 8px !important;
+  font-size: 11px;
+  font-weight: 600;
+  color: #323133;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.side-topics span {
+  display: inline-block;
+  width: 150px;
+  line-height: 17px;
+}
+.download-icon {
+  margin-right: 10px;
+  background-image: url(../images/download-icon.png);
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: right;
+}
+.side-topics:hover {
+  background-color: white;
+}
+.side-topics:hover .download-icon {
+  background-image: url(../images/download-icon\ -\ 2.png);
+}
+.hamburger-icon {
+  margin-right: 10px;
+  background-image: url(../images/hamburger-icon.png);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+.side-topics:hover .hamburger-icon {
+  background-image: url(../images/hamburger-icon-2.png);
+}
+.side-topics-right {
+  padding: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #323133;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.side-topics-right:hover {
+  background-color: white;
 }
