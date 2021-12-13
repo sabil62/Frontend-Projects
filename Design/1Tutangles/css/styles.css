@@ -69,7 +69,7 @@ body {
   color: #323133;
 }
 .main-username {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   text-align: right;
   font-family: Arial, Helvetica, sans-serif;
@@ -87,4 +87,53 @@ body {
 .navlist .navlinks span:hover {
   color: ivory;
 }
-/* -----------------navbar secodnary-------- */
+/* -----------------navbar secondary-------- */
+.navbar-secondary {
+  height: 40px;
+  background-color: #f5f5f5;
+  font-weight: 600;
+  font-size: 13.6px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #474747;
+}
+.navbar-secondary .navbar-secondary-inside {
+  margin-left: 36px;
+}
+.navbar-secondary .navbar-secondary-inside span {
+  cursor: pointer;
+  padding: 13.2px 12px;
+  display: inline-block;
+}
+.navbar-secondary .navbar-secondary-inside span:hover {
+  background-color: white;
+}
+
+.topic-boxes {
+  display: inline-block;
+  cursor: pointer;
+  /* padding: 13.2px 12px; */
+}
+.topic-boxes:hover {
+  color: rgb(115, 196, 196);
+}
+.friend-req {
+  display: inline-block;
+  padding: 10.2px 0 13.2px 12px;
+  cursor: pointer;
+}
+
+.friend-req .profile-icon {
+  display: inline-block;
+  height: 16px;
+  width: 17px;
+  margin-top: 3px;
+  margin-right: 4px;
+  background-image: url(../images/profile-icon.png);
+}
+.friend-req:hover {
+  color: rgb(115, 196, 196);
+}
+
+.friend-req:hover .profile-icon {
+  background-image: url(../images/profile-blue.png);
+}
