@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
+body {
+  font-family: "Mulish", sans-serif;
+  box-sizing: border-box;
+}
+.nav {
+  background-color: #7dd9e8;
+  height: 85px;
+}
+
+.navbar .main-logo {
+  margin: 19px 0 0 30px;
+  float: left;
+}
+.search-part {
+  float: left;
+  margin: 40px 0 0 30px;
+}
+
+.search-area {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 20px;
+  width: 276px;
+  background-color: #caeff7;
+}
+.search-area input {
+  width: 180px;
+
+  font-size: 10px;
+  color: #8b9596;
+  font-weight: 500;
+  border: none;
+  padding: 3px 0px 3px 8px;
+  background-color: inherit;
+  outline: none;
+}
+.search-area .borderHeight {
+  height: 20px;
+  display: inline-block;
+  width: 1px;
+  background-color: #ade7f2;
+}
+.m-b-4 {
+  margin-bottom: 5px;
+}
+.search-button {
+  cursor: pointer;
+  height: 20px;
+  width: 53px;
+  display: inline-block;
+  background-color: #275056;
+  margin-left: 7px;
+  box-sizing: border-box;
+}
+/* .search-button {
+  box-sizing: border-box;
+  display: inline-block;
+} */
+.search-button span {
+  color: white;
+  font-size: 8.4px;
+  font-weight: 600;
+  padding: 4px 0 0 1px;
+  font-family: sans-serif;
+}
+.navlist {
+  margin-top: 24px;
+  color: #323133;
+}
+.main-username {
+  font-size: 15px;
+  font-weight: 600;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 26px;
+}
+.navlist .navlinks {
+  font-size: 13.6px;
+  font-weight: 900;
+}
+
+.navlist .navlinks span {
+  cursor: pointer;
+  font-weight: 600;
+}
+.navlist .navlinks span:hover {
+  color: ivory;
+}
+/* -----------------navbar secodnary-------- */
