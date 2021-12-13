@@ -157,10 +157,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #323133;
 }
-.middle-section {
-  width: 518px;
-  float: left;
-}
+
 .right-sidebar {
   float: right;
   width: 176px;
@@ -246,4 +243,123 @@ body {
 }
 .footer-about ul.about li a:hover {
   color: blue;
+}
+
+/* ----------------middle section ------------ */
+.middle-section {
+  width: 518px;
+  float: left;
+  margin-left: 26px;
+  margin-right: 24px;
+}
+.middle-section h1 {
+  font-size: 32px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.selection-section {
+  height: 65px;
+  border-bottom: 2px solid #2fc1da;
+}
+.selection-section .all-entries {
+  width: 258px;
+  background-color: #f5f5f5;
+  background-image: url(../images/all\ entries\ left.png);
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.selection-section .subscribed {
+  width: 258px;
+  background-color: #f5f5f5;
+  background-image: url(../images/all\ entries\ right.png);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+.center-text {
+  text-align: center;
+  font-size: 15.2px;
+  font-weight: 600;
+  color: #323133;
+  padding: 10.4px 0;
+}
+.two-buttons .button-blue {
+  float: left;
+  width: 114px;
+  height: 28px;
+  background-color: #2fc2dc;
+  text-align: center;
+  margin-left: 10px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  /* padding-top: 7px; */
+}
+.two-buttons .button-blue .button-blue-left {
+  background-image: url(../images/button-left-blue-round.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 13px;
+  height: 27px;
+}
+.two-buttons .button-blue .button-blue-right {
+  background-image: url(../images/button-right-blue-round.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 11px;
+  height: 27px;
+}
+.inside {
+  display: inline-block;
+  padding-top: 7px;
+}
+.inside-long {
+  padding-top: 7px;
+  margin-left: -2px;
+}
+.button-blue:hover {
+  background-color: #dddddd;
+  color: #323133;
+}
+.button-blue:hover .button-blue-left {
+  background-image: url(../images/button-left-grey-round.png);
+}
+.button-blue:hover .button-blue-right {
+  background-image: url(../images/button-right-grey-round.png);
+}
+
+.two-buttons .button-grey {
+  /* padding-top: 7px; */
+  font-size: 14px;
+  float: left;
+  width: 114px;
+  height: 28px;
+  background-color: #dddddd;
+  text-align: center;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.two-buttons .button-grey .button-grey-left {
+  background-image: url(../images/button-left-grey-round.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 13px;
+  height: 27px;
+}
+.two-buttons .button-grey .button-grey-right {
+  background-image: url(../images/button-right-grey-round.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 11px;
+  height: 27px;
+}
+.button-grey:hover {
+  background-color: #2fc2dc;
+  color: white;
+}
+.button-grey:hover .button-grey-left {
+  background-image: url(../images/button-left-blue-round.png);
+}
+.button-grey:hover .button-grey-right {
+  background-image: url(../images/button-right-blue-round.png);
 }
