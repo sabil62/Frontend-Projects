@@ -64,6 +64,9 @@ body {
   padding: 4px 0 0 1px;
   font-family: sans-serif;
 }
+.search-button:hover span {
+  color: rgb(93, 217, 255);
+}
 .navlist {
   margin-top: 24px;
   color: #323133;
@@ -106,6 +109,7 @@ body {
 }
 .navbar-secondary .navbar-secondary-inside span:hover {
   background-color: white;
+  color: black;
 }
 
 .topic-boxes {
@@ -253,9 +257,9 @@ body {
   margin-right: 24px;
 }
 .middle-section h1 {
-  font-size: 32px;
+  font-size: 30px;
   letter-spacing: 1px;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 .selection-section {
   height: 65px;
@@ -362,4 +366,34 @@ body {
 }
 .button-grey:hover .button-grey-right {
   background-image: url(../images/button-right-blue-round.png);
+}
+.main-content-box {
+  box-sizing: content-box;
+  padding: 15px 0;
+  border-bottom: 1px solid #d8d8d8;
+  height: 70px;
+  font-size: 13px;
+  color: #323133;
+  line-height: 16px;
+}
+.main-content-box .text-content {
+  margin-left: 10px;
+  padding-top: 2px;
+}
+.bold-text {
+  font-size: 16.4px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.blue-text {
+  color: #4daebf;
+  font-weight: 600;
+}
+.green-text {
+  color: #709724;
+  font-weight: 600;
+}
+.red-text {
+  color: #d64b2a;
+  font-weight: 600;
 }
