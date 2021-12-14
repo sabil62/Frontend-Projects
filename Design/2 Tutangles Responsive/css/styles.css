@@ -72,6 +72,9 @@ body {
   margin-top: 24px;
   color: #323133;
 }
+.small-show {
+  display: none;
+}
 .main-username {
   font-size: 16px;
   font-weight: 600;
@@ -770,7 +773,7 @@ body {
     height: 32px;
     padding-top: 6px;
   }
-  .search-part {
+  .search-area {
     display: none;
   }
   .nav {
@@ -819,14 +822,20 @@ body {
   .selection-section .subscribed {
     display: none;
   }
+  .small-show {
+    height: 22px;
+
+    display: inline-block;
+    /* float: left; */
+  }
+  .search-part {
+    margin-top: 22px;
+  }
 }
 
 @media (max-width: 381px) {
-  .navbar-secondary-right .topic-boxes {
-    display: none;
-  }
-  .navbar-secondary-right .friend-req {
-    display: none;
+  .navbar-secondary {
+    height: 100px;
   }
 }
 
