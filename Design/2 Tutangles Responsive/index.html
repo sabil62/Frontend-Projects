@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tu Tangle</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div class="navbar container clearfix">
+        <img
+          src="./images/main logo.png"
+          alt="mainlogo"
+          class="main-logo"
+          onclick="goToRepo()"
+        />
+        <span class="search-part clearfix">
+          <div class="search-area left-float">
+            <img
+              src="./images/search-leftmost.png"
+              alt="searchleft"
+              class="left-float"
+            />
+            <input placeholder="Search by Term, Member or Entry Title" />
+            <img
+              src="./images/search-rightmost.png"
+              alt="rightmost"
+              class="right-float"
+            />
+            <div class="right-float">
+              <img src="./images/cross.png" alt="search" class="m-b-4" />
+              <div class="borderHeight"></div>
+              <img src="./images/search.png" alt="cross" class="m-b-4" />
+            </div>
+          </div>
+
+          <div class="search-button left-float">
+            <img
+              src="./images/search-left.png"
+              alt="searchButtonLeft"
+              class="left-float"
+            />
+            <span onclick="goToRepo()">SEARCH</span>
+            <img
+              src="./images/search-right.png"
+              alt="searchButtonRight"
+              class="right-float"
+            />
+          </div>
+        </span>
+        <div class="right-float clearfix navlist">
+          <div class="main-username">Joe Burros</div>
+          <div class="navlinks">
+            <span>Home</span> | <span>Settings</span> | <span>Log Out</span>
+          </div>
+        </div>
+
+        <!-- <div class="right-float clearfix navlist">
+          <div class="main-username">Joe Burros</div>
+          <div class="navlinks">
+              <span>Home</span>
+                |
+              <span>Settings</span>
+              |
+              <span>Log Out</span>
+            
+        </div> -->
+      </div>
+    </div>
+    <!-- navbar secondary -->
+    <section class="navbar-secondary">
+      <div class="container clearfix">
+        <div class="left-float navbar-secondary-inside">
+          <span onclick="goToRepo()">Create New Entry</span>
+          <span onclick="goToRepo()">My Topic Boxes</span>
+          <span onclick="goToRepo()">Friends</span>
+          <span onclick="goToRepo()">Invite New Member</span>
+        </div>
+        <div class="right-float">
+          <div class="topic-boxes" onclick="goToRepo()">
+            <div style="display: inline-block; margin-top: 3px">
+              <img src="./images/topic-icon.png" alt="topics" />
+            </div>
+
+            Topic Boxes Invites - 2
+          </div>
+          <div class="friend-req" onclick="goToRepo()">
+            <div class="profile-icon"></div>
+            Friend Requests - 0
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- main section  -->
+    <section class="main-container clearfix">
+      <div class="container main-container-padding clearfix">
+        <section class="left-sidebar">
+          <div class="blue-section">Recent Searches</div>
+          <div class="side-topics">
+            <div class="download-icon">
+              <span style="width: 110px" onclick="goToRepo()"
+                >Nick Cave and the Bad Seeds</span
+              >
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="download-icon">
+              <span onclick="goToRepo()">African Animals</span>
+            </div>
+          </div>
+          <div class="blue-section">Recent Searches</div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"
+                >Different versions of the Tristan Und Isolde Prelude</span
+              >
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"> Music </span>
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"> Guitar </span>
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"> Bob Cohen </span>
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"> Mark Schnack </span>
+            </div>
+          </div>
+          <div class="side-topics">
+            <div class="hamburger-icon">
+              <span onclick="goToRepo()"> Jefferson Dickey </span>
+            </div>
+          </div>
+        </section>
+        <section class="middle-section">
+          <h1>Entries</h1>
+          <div class="selection-section clearfix">
+            <div class="all-entries left-float">
+              <div class="center-text">All Entries</div>
+              <div class="two-buttons clearfix">
+                <div class="button-blue">
+                  <div class="left-float button-blue-left"></div>
+                  <div class="inside" onclick="goToRepo()">All members</div>
+
+                  <div class="right-float button-blue-right"></div>
+                </div>
+                <div class="button-grey">
+                  <div class="left-float button-grey-left"></div>
+                  <div class="inside" onclick="goToRepo()">Friends</div>
+
+                  <div class="right-float button-grey-right"></div>
+                </div>
+              </div>
+            </div>
+            <div class="subscribed right-float">
+              <div class="center-text">Subscribed</div>
+              <div class="two-buttons clearfix">
+                <div class="button-grey">
+                  <div class="left-float button-grey-left"></div>
+                  <div class="inside" onclick="goToRepo()">New Entries</div>
+                  <div class="right-float button-grey-right"></div>
+                </div>
+                <div class="button-grey">
+                  <div class="left-float button-grey-left"></div>
+                  <div class="inside-long left-float" onclick="goToRepo()">
+                    New Comments
+                  </div>
+
+                  <div class="right-float button-grey-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- img-1  -->
+          <div class="main-content-box">
+            <div class="image-content left-float">
+              <img src="./images/image 1.png" alt="image 1" />
+            </div>
+            <div class="text-content left-float">
+              <div class="bold-text">
+                Day for Night by Francois Truffaut, a ground breaking film
+              </div>
+              <div>
+                by <span class="blue-text">Alan Coe</span> | February 10, 2012 |
+                <span class="green-text">Subscribed</span>
+              </div>
+              <div>
+                From Topic Box.
+                <span class="blue-text">My Favorite Movies</span>
+              </div>
+            </div>
+          </div>
+          <!-- image 2  -->
+          <div class="main-content-box">
+            <div class="image-content left-float">
+              <img src="./images/image 2.png" alt="image 2" />
+            </div>
+            <div class="text-content left-float">
+              <div class="blue-text">NEW ENTRY!</div>
+              <div class="bold-text">Blade Runner, The Director's Cult</div>
+              <div>
+                by <span class="blue-text">Mary Pilot</span> February 8, 2012
+              </div>
+              <div>
+                From Topic Box: <span class="blue-text">Behind the Scene</span>
+              </div>
+            </div>
+          </div>
+          <!-- image 3   -->
+          <div class="main-content-box">
+            <div class="image-content left-float">
+              <img src="./images/image 3.png" alt="image 3" />
+            </div>
+            <div class="text-content left-float">
+              <div class="blue-text">NEW COMMENT!</div>
+              <div class="bold-text">
+                The Best French Restaurant in Chicago?
+              </div>
+              <div>
+                by <span class="blue-text">Jim Roy</span> February 7, 2012
+              </div>
+              <div>
+                From Topic Box:
+                <span class="blue-text">Chicago Restaurants Reviews</span>
+              </div>
+            </div>
+          </div>
+          <!-- image 4  -->
+          <div class="main-content-box">
+            <div class="image-content left-float">
+              <img src="./images/image 4.png" alt="image 4" />
+            </div>
+            <div class="text-content left-float">
+              <div class="bold-text">
+                The Meaning of Night. Dark Book but incredibly well written.
+              </div>
+              <div>
+                by <span class="blue-text">Jon-Peter Moise</span> February 7,
+                2012 | <span class="green-text">Subscribed</span>
+              </div>
+              <div>
+                From Topic Box:
+                <span class="blue-text">Books Read & Books to Read</span>
+              </div>
+            </div>
+          </div>
+          <!-- image 5  -->
+          <div class="main-content-box">
+            <div class="image-content left-float">
+              <img src="./images/image 5.png" alt="image 5" />
+            </div>
+            <div class="text-content left-float">
+              <div class="red-text">TOPIC BOX INVITE!</div>
+              <div class="bold-text">Pea Pesto</div>
+              <div>
+                by <span class="blue-text">Marianne Gig</span> February 6, 2012
+              </div>
+              <div>
+                From Topic Box: <span class="blue-text">Favorite Recipes</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="right-sidebar">
+          <div class="blue-section">Video Tutorials</div>
+          <div
+            class="side-topics-right"
+            style="padding-top: 18px"
+            onclick="goToRepo()"
+          >
+            Overview of TUTangle
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Searching the Site
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Pervious & Saved Searches
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            The Topic Box Page
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Creating a Topic Box
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            View Topic Box Entries
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Creating an Entry
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">
+            Privacy Settings
+          </div>
+          <div class="side-topics-right" onclick="goToRepo()">Co-Authoring</div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container" style="padding: 18px 34px 0px 26px">
+        <div class="footer-about left-float">
+          <ul class="about">
+            <li style="list-style: none">
+              <a href="#">About us</a>
+            </li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Feedback</a></li>
+          </ul>
+        </div>
+        <div class="copyright right-float">&copy; TuTangle 2013</div>
+      </div>
+    </footer>
+    <div class="popup" id="pop">
+      <div>Click any button to access the repo</div>
+    </div>
+    <script>
+      function goToRepo() {
+        // let url = "https://sabil62.github.io/leapfrog/Design/1Tutangles";
+        let url =
+          "https://github.com/sabil62/leapfrog/tree/main/Design/1Tutangles";
+        location.href = url;
+      }
+      let popup = document.getElementById("pop");
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 400);
+    </script>
+  </body>
+</html>
