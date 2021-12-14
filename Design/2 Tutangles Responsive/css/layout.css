@@ -11,6 +11,11 @@
   float: right;
 }
 .container {
-  width: 1002px;
+  max-width: 1002px;
   margin: 0 auto;
 }
+/* @media (max-width: 991px) {
+  .container{
+    max-width: ;
+  }
+} */

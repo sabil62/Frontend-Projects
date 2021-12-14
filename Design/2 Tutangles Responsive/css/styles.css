@@ -252,7 +252,7 @@ body {
 
 /* ----------------middle section ------------ */
 .middle-section {
-  width: 518px;
+  max-width: 518px;
   float: left;
   margin-left: 26px;
   margin-right: 24px;
@@ -263,18 +263,18 @@ body {
   margin-bottom: 6px;
 }
 .selection-section {
-  height: 65px;
+  height: 66px;
   border-bottom: 2px solid #2fc1da;
 }
 .selection-section .all-entries {
-  width: 258px;
+  max-width: 258px;
   background-color: #f5f5f5;
   background-image: url(../images/all\ entries\ left.png);
   background-repeat: no-repeat;
   background-position: left;
 }
 .selection-section .subscribed {
-  width: 258px;
+  max-width: 258px;
   background-color: #f5f5f5;
   background-image: url(../images/all\ entries\ right.png);
   background-repeat: no-repeat;
@@ -380,6 +380,7 @@ body {
 .main-content-box .text-content {
   margin-left: 10px;
   padding-top: 2px;
+  max-width: 400px;
 }
 .bold-text {
   font-size: 16.4px;
@@ -413,4 +414,22 @@ body {
   padding-top: 24px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+/* 
+@media (max-width: 1199px) { ... }
+@media (max-width: 991px) { ... }
+@media (max-width: 767px) { ... }
+@media (max-width: 479px) { ... } */
+
+@media (max-width: 991px) {
+  .right-sidebar {
+    display: block;
+    float: left;
+    width: 196px;
+    height: 400px;
+  }
+  .middle-section {
+    margin-right: 8px;
+    margin-left: 14px;
+  }
 }
