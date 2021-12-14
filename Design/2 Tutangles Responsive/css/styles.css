@@ -417,6 +417,10 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
+.later-display {
+  display: none;
+}
+
 /* 
 @media (max-width: 1199px) { ... }
 @media (max-width: 991px) { ... }
@@ -425,10 +429,10 @@ body {
 
 @media (max-width: 1009px) {
   .right-sidebar {
-    display: block;
     float: left;
     width: 24%;
     height: 400px;
+    margin-left: 1.2%;
   }
   .middle-section {
     width: 65%;
@@ -436,6 +440,7 @@ body {
   }
   .left-sidebar {
     width: 24%;
+    margin-left: 1.2%;
   }
   .main-content-box {
     width: 100%;
@@ -515,5 +520,39 @@ body {
   .friend-req .profile-icon {
     height: 12px;
     width: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .previous-display {
+    display: none;
+  }
+  .table-row {
+    display: table-row;
+  }
+  .later-display {
+    display: block;
+  }
+  .left-sidebar {
+    width: 66%;
+    height: auto;
+    background-color: transparent;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+  }
+  .upper-section {
+    display: table-cell;
+    width: 48%;
+  }
+  .lower-section {
+    display: table-cell;
+    width: 48%;
+  }
+  .right-sidebar {
+    float: right;
+  }
+  .middle-section {
+    clear: both;
   }
 }
