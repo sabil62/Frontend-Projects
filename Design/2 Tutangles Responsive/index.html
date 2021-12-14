@@ -218,20 +218,27 @@
               </div>
             </div>
             <div class="subscribed right-float">
-              <div class="center-text">Subscribed</div>
-              <div class="two-buttons clearfix">
-                <div class="button-grey">
-                  <div class="left-float button-grey-left"></div>
-                  <div class="inside" onclick="goToRepo()">New Entries</div>
-                  <div class="right-float button-grey-right"></div>
-                </div>
-                <div class="button-grey" style="margin-right: 6px">
-                  <div class="left-float button-grey-left"></div>
-                  <div class="inside-long left-float" onclick="goToRepo()">
-                    New Comments
+              <div class="hov-section">
+                <div class="center-text">Subscribed</div>
+                <!-- <div class="show-small">More</div> -->
+                <div class="two-buttons clearfix hov-dropdown">
+                  <div class="button-grey">
+                    <div class="left-float button-grey-left"></div>
+                    <div class="inside" onclick="goToRepo()">New Entries</div>
+                    <div class="right-float button-grey-right"></div>
                   </div>
+                  <div
+                    class="button-grey"
+                    style="margin-right: 6px"
+                    id="inside-long"
+                  >
+                    <div class="left-float button-grey-left"></div>
+                    <div class="inside-long left-float" onclick="goToRepo()">
+                      New Comments
+                    </div>
 
-                  <div class="right-float button-grey-right"></div>
+                    <div class="right-float button-grey-right"></div>
+                  </div>
                 </div>
               </div>
             </div>
