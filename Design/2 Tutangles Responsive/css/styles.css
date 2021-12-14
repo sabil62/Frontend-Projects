@@ -378,9 +378,11 @@ body {
   line-height: 16px;
 }
 .main-content-box .text-content {
-  margin-left: 10px;
   padding-top: 2px;
-  max-width: 400px;
+  clear: both;
+  margin-left: 10px;
+
+  display: inline-block;
 }
 .bold-text {
   font-size: 16.4px;
@@ -425,11 +427,48 @@ body {
   .right-sidebar {
     display: block;
     float: left;
-    width: 196px;
+    width: 24%;
     height: 400px;
   }
   .middle-section {
-    margin-right: 8px;
-    margin-left: 14px;
+    width: 65%;
+    margin-left: 6%;
+  }
+  .left-sidebar {
+    width: 24%;
+  }
+  .main-content-box {
+    width: 100%;
+  }
+  .main-content-box {
+    box-sizing: content-box;
+
+    line-height: 16px;
+  }
+  /* .main-content-box .text-content {
+    clear: both;
+  } */
+  .bold-text {
+    font-size: 13.4px;
+    font-weight: 600;
+    line-height: 12px;
+  }
+  .two-buttons .button-grey {
+    width: 42%;
+  }
+  .two-buttons .button-blue {
+    width: 42%;
+  }
+  .inside {
+    font-size: 11px;
+  }
+  .inside-long {
+    font-size: 10px;
+  }
+  .all-entries {
+    width: 49%;
+  }
+  .subscribed {
+    width: 49%;
   }
 }
