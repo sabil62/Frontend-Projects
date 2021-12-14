@@ -283,6 +283,7 @@ body {
   background-image: url(../images/all\ entries\ right.png);
   background-repeat: no-repeat;
   background-position: right;
+  border-left: 2px solid white;
 }
 .center-text {
   text-align: center;
@@ -385,6 +386,7 @@ body {
   padding-top: 2px;
   clear: both;
   margin-left: 10px;
+  max-width: 400px;
 
   display: inline-block;
 }
@@ -598,7 +600,7 @@ body {
     display: inline-block;
     height: 20px;
     /* width: 100px; */
-    width: calc(20vw);
+    width: 20vw;
     background-color: #caeff7;
   }
   .search-area input {
@@ -640,5 +642,34 @@ body {
   }
   .topic-height {
     height: 13px;
+  }
+  .middle-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 2%;
+    width: 100%;
+  }
+  /* .selection-section {
+    height: 66px;
+    border-bottom: 2px solid #2fc1da;
+  } */
+  .selection-section .all-entries {
+    max-width: 358px;
+  }
+  .selection-section .subscribed {
+    max-width: 358px;
+  }
+  .bold-text {
+    max-width: 400px;
+  }
+  .inside-long {
+    font-size: 9.1px;
+    text-align: center;
+  }
+  .two-buttons .button-grey {
+    margin-left: 5px;
+  }
+  .main-content-box .text-content {
+    max-width: 312px;
   }
 }
