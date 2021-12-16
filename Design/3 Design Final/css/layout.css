@@ -9,3 +9,78 @@
 .right-float {
   float: right;
 }
+.container {
+  width: 88.75%;
+  margin: 0 auto;
+}
+.four-column {
+  background-color: bisque;
+}
+.two-column-left div {
+  background-color: rgb(170, 179, 255);
+  width: 256px;
+}
+.two-column-right div {
+  background-color: rgb(255, 170, 170);
+  width: 256px;
+}
+@media (min-width: 580px) {
+  .one-column-left {
+    float: left;
+  }
+  .one-column-right {
+    float: right;
+  }
+}
+@media (min-width: 680px) {
+  .one-column-left {
+    margin-left: 6%;
+  }
+  .one-column-right {
+    margin-right: 6%;
+  }
+}
+
+@media (min-width: 820px) {
+  .one-column-left {
+    margin-left: 12%;
+  }
+  .one-column-right {
+    margin-right: 12%;
+  }
+}
+
+@media (min-width: 1020px) {
+  .one-column-left {
+    margin-left: 0;
+  }
+  .one-column-right {
+    margin-right: 0;
+  }
+  .two-column-left {
+    float: left;
+    width: 50%;
+    background-color: rgb(189, 245, 133);
+  }
+  .two-column-right {
+    float: right;
+    width: 50%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .two-column-left .one-column-right {
+    margin-right: 4%;
+  }
+  .two-column-right .one-column-left {
+    margin-left: 4%;
+  }
+}
+@media (min-width: 1480px) {
+  .two-column-left .one-column-right {
+    margin-right: 8%;
+  }
+  .two-column-right .one-column-left {
+    margin-left: 8%;
+  }
+}
