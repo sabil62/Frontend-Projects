@@ -18,11 +18,17 @@
 }
 .two-column-left div {
   background-color: rgb(170, 179, 255);
-  width: 256px;
 }
 .two-column-right div {
   background-color: rgb(255, 170, 170);
-  width: 256px;
+}
+.one-column-left {
+  margin: auto;
+  max-width: 300px;
+}
+.one-column-right {
+  margin: auto;
+  max-width: 300px;
 }
 @media (min-width: 580px) {
   .one-column-left {
