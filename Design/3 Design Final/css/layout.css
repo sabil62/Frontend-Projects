@@ -92,8 +92,9 @@
 }
 /* -------------------navbar layout--------------- */
 .navbar-main {
-  background-color: rgb(229, 229, 250);
+  background-color: white;
   height: 108px;
+  width: 100%;
 }
 
 .navbar-main .container a {
@@ -104,6 +105,9 @@
   padding: 44px 20px;
   text-decoration: none;
   font-size: 16px;
+}
+.navbar-main .container a:hover {
+  color: black;
 }
 .navbar-main .logo {
   position: relative;
@@ -119,6 +123,14 @@
 .right-float-nav {
   float: right;
 }
+.right-float-nav a {
+  color: #304f8c !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+.right-float-nav a:hover {
+  color: #041230 !important;
+}
 .navbar-main a .logo span {
   font-size: 32px;
   font-weight: 500;
@@ -130,26 +142,99 @@
 }
 .navbar-main .container .hamburger-icon {
   display: none;
+  color: black;
+  font-size: 22px;
+  height: 30px;
 }
-@media screen and (max-width: 600px) {
-  .navbar-main a.hamburger-icon {
+.button-nav {
+  border: 1px solid #304f8c;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 11.4px 3vw !important;
+  margin-top: 34px;
+}
+.button-nav:hover {
+  border: 1px solid #041230 !important;
+}
+@media (max-width: 991px) {
+  .navbar-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+@media screen and (max-width: 1161px) {
+  .navbar-main .logo {
+    position: relative;
+    width: 180px;
+    color: black;
+    margin-right: 2vw;
+  }
+  .navbar-main .container a {
+    padding: 44px 1.3vw;
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .navbar-main .container a.hamburger-icon {
     float: right;
     display: block;
   }
+  .navbar-main .container a {
+    display: none;
+  }
+  .a-block {
+    display: block !important;
+  }
+  .right-float-nav {
+    float: none;
+  }
+  .top-a {
+    margin-top: 65px;
+  }
+
+  /* .navbar-main .container a:not(:nth-child(1)) {
+    display: none;
+  } */
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 991px) {
   .navbar-main.responsive {
     position: relative;
   }
-  .navbar-main.responsive .container .hamburger-icon {
+  .navbar-main.responsive .container a.hamburger-icon {
     position: absolute;
     right: 0;
     top: 0;
+    padding: 44px 52px;
+    background-color: transparent;
   }
   .navbar-main.responsive .container a {
     float: none;
     display: block;
-    text-align: left;
+    text-align: center;
+    padding: 14px 0;
+    background-color: #f8f8f8;
+  }
+  .navbar-main.responsive .container a.a-block {
+    background-color: transparent;
+  }
+
+  .navbar-main.responsive .container a:hover {
+    background-color: #f9feff;
+  }
+  .navbar-main.responsive .container a.hamburger-icon:hover {
+    background-color: transparent;
+  }
+  .navbar-main.responsive .container span a.button-nav {
+    border: none;
+    margin-top: 0px;
+  }
+  /* .button-nav {
+   
+  } */
+
+  .button-nav:hover {
+    border: none !important;
   }
 }
