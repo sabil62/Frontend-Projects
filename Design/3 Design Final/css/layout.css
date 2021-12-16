@@ -147,16 +147,16 @@
   height: 30px;
 }
 .button-nav {
-  border: 1px solid #304f8c;
+  border: 1.59px solid #304f8c;
   box-sizing: border-box;
   border-radius: 8px;
   padding: 11.4px 3vw !important;
   margin-top: 34px;
 }
 .button-nav:hover {
-  border: 1px solid #041230 !important;
+  border: 1.59px solid #041230 !important;
 }
-@media (max-width: 991px) {
+@media (min-width: 991px) {
   .navbar-main {
     position: fixed;
     top: 0;
