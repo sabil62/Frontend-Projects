@@ -10,7 +10,43 @@
     <link rel="stylesheet" href="css/reset.css" />
   </head>
   <body>
-    <h1>Initial Setup</h1>
+    <!-- navbar -->
+    <nav class="navbar-main" id="navbar">
+      <div class="container">
+        <a href="#" style="padding-left: 0; padding-top: 30px">
+          <div class="logo">
+            <img src="./assets/logo.png" alt="main-logo" />
+            <span>SISTOK</span>
+          </div>
+        </a>
+        <a href="#">Sobre nós</a>
+        <a href="#">Serviços</a>
+        <a href="#">Atuação</a>
+        <a href="#">Planos</a>
+        <a href="#">Ajuda</a>
+        <span class="right-float-nav">
+          <a href="#">Cadastre-se</a>
+          <a href="#">Entrar</a>
+        </span>
+        <a
+          href="javascript:void(0);"
+          style="font-size: 15px"
+          class="hamburger-icon"
+          onclick="navbarFunction()"
+          >&#9776;</a
+        >
+      </div>
+    </nav>
+    <script>
+      function navbarFunction() {
+        var x = document.getElementById("navbar");
+        if (x.className === "navbar-main") {
+          x.className += " responsive";
+        } else {
+          x.className = "navbar-main";
+        }
+      }
+    </script>
     <div class="container">
       <h1>done</h1>
       <div class="four-column clearfix">
