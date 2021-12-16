@@ -16,12 +16,12 @@
 .four-column {
   background-color: bisque;
 }
-.two-column-left div {
+/* .two-column-left div {
   background-color: rgb(170, 179, 255);
 }
 .two-column-right div {
   background-color: rgb(255, 170, 170);
-}
+} */
 .one-column-left {
   margin: auto;
   max-width: 300px;
