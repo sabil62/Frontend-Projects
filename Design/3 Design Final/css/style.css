@@ -182,6 +182,22 @@
   font-size: 0.85rem;
   display: block;
 }
+.btn-blue-box {
+  box-sizing: border-box;
+  border: 1.56px solid #304f8c;
+  background-color: transparent;
+  color: #304f8c;
+  border-radius: 8px;
+  padding: 13px 10px !important;
+  margin: 8px auto;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.btn-blue-box:hover {
+  background-color: #234281;
+  color: white;
+}
 .btn-blue .btn-blue-left {
   display: inline-block;
   padding: 10px 0;
@@ -205,6 +221,30 @@
   line-height: 30px;
   text-align: center;
   margin-top: 22px;
+}
+.top-text {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+}
+.bold-currency {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #11182699;
+}
+.bold-currency span {
+  font-size: 32px;
+  color: #111826;
+  font-weight: 700;
+  line-height: 30px;
+}
+.small-text {
+  height: 72px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #4c5d73;
 }
 /* ---------------------------media queries---------------------------- */
 @media (min-width: 480px) {
