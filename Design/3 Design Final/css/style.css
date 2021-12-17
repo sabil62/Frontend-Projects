@@ -32,7 +32,7 @@
   border-radius: 8px;
   margin: 16px auto;
   display: block;
-  box-shadow: 0px 12px 50px rgba(48, 79, 140, 0.26);
+  box-shadow: 0px 12px 50px rgba(48, 79, 140, 0.167);
   cursor: pointer;
 }
 .landing-page .landing-page-text-portion .landing-page-button:hover {
@@ -93,14 +93,14 @@
 .servicos {
   margin: 50px 0;
 }
-.servicos .servicos-subtitle {
+.subtitle {
   line-height: 42px;
   letter-spacing: 0.05em;
   font-size: 13.8px;
 
   color: #4c5d73;
 }
-.servicos .servicos-maintitle {
+.maintitle {
   width: 100%;
   font-weight: 500;
   font-size: 24px;
@@ -123,10 +123,11 @@
 }
 .four-box-column {
   width: 100%;
-  margin: 30px 0;
+  margin: 42px 0 0 0;
 }
 .four-box-column .one-box-column {
   width: 100%;
+  padding-bottom: 46px;
 }
 .four-box-column .one-box-column .inner-box {
   padding: 20px 24px;
@@ -169,7 +170,7 @@
     display: inline-block;
     width: 49.5%;
   }
-  .servicos .servicos-maintitle {
+  .maintitle {
     width: 95%;
     font-size: 28px;
     line-height: 40px;
@@ -219,18 +220,19 @@
     font-size: 13px;
   }
 }
-
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .four-box-column .one-box-column {
     display: inline-block;
     width: 24.6%;
   }
-  .servicos .servicos-subtitle {
+}
+@media (min-width: 1200px) {
+  .subtitle {
     line-height: 56px;
     letter-spacing: 0.1em;
     font-size: 16px;
   }
-  .servicos .servicos-maintitle {
+  .maintitle {
     width: 68%;
     font-size: 32px;
     line-height: 40px;
