@@ -189,7 +189,7 @@
   background-color: transparent;
   color: #304f8c;
   border-radius: 8px;
-  padding: 13px 10px !important;
+  padding: 14px 10px !important;
   margin: 8px auto;
   text-align: center;
   font-weight: 700;
@@ -305,8 +305,48 @@
   line-height: 20px;
   color: #4c5d73;
 }
+.height-34 {
+  height: 34px;
+}
+.slider {
+  margin: 40px 0;
+}
+.slider .slider-box {
+  max-width: 770px;
+  /* height: 50px; */
+  background: #eaedf3;
+  border-radius: 13px;
+  margin: 0 auto;
+  padding: 30px;
+}
+.slider .slider-box .slider-relative {
+  position: relative;
+}
+.slider .slider-box .slider-relative .slider-comma {
+  position: absolute;
+  top: -50px;
+  right: 0px;
+}
+.slider .slider-box .slider-relative img {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+}
+.slider .slider-box .slider-relative .lower-section {
+  font-size: 12.6px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+  color: #4c5d73;
+  margin-top: 20px;
+}
+
 /* ---------------------------media queries---------------------------- */
 @media (min-width: 480px) {
+  .slider .slider-box .slider-relative img {
+    width: 150px;
+  }
   .two-content-grid .left-image {
     width: 100%;
 
@@ -332,15 +372,21 @@
     color: #4c5d73;
   }
 }
-@media (max-width: 769px) {
-  .landing-page .landing-page-text-portion .landing-page-main-heading {
-    text-align: center;
-  }
-  .big-white-box {
-    padding: 36px 45px;
-  }
-}
+
 @media (min-width: 769px) {
+  .slider .slider-box {
+    padding: 35px 120px;
+  }
+  .slider .slider-box .slider-relative .lower-section {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+  .slider .slider-box .slider-relative .slider-comma {
+    right: -50px;
+  }
+
   .four-box-column .one-box-column .inner-box {
     width: 268px;
   }
@@ -455,6 +501,7 @@
     max-width: 440px;
   }
 }
+
 @media (min-width: 1200px) {
   .two-content-grid .left-image {
     width: 39%;
@@ -465,7 +512,7 @@
   .two-content-grid .right-content {
     width: 60%;
     font-size: 17.6px;
-    margin-top: 15vw;
+    margin-top: 12vw;
   }
   .subtitle {
     line-height: 56px;
@@ -526,6 +573,18 @@
   }
 }
 
+@media (max-width: 769px) {
+  .slider .slider-box .slider-relative .slider-comma svg {
+    height: 48px;
+    width: 48px;
+  }
+  .landing-page .landing-page-text-portion .landing-page-main-heading {
+    text-align: center;
+  }
+  .big-white-box {
+    padding: 36px 45px;
+  }
+}
 /* @media (min-width: 480px) { ... }
 @media (min-width: 768px) { ... }
 @media (min-width: 992px) { ... }
