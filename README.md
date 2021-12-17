@@ -8,6 +8,6 @@ https://sabil62.github.io/leapfrog/
 - JavaScript Assignments
 
 <p align="center">
-  <img src="./assets/leapf" width="350" title="hover text">
+  <img src="https://github.com/sabil62/leapfrog/blob/main/assets/leapf.jpg" width="350" title="hover text">
 
 </p>
