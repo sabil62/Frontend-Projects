@@ -338,12 +338,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 26px;
-  text-align: left;
+  text-align: justify;
   color: #4c5d73;
   margin-top: 20px;
 }
 .slider .slider-box .slider-relative .slider-circle {
-  margin: 24px auto;
+  margin: 10px auto;
+  padding-top: 16px;
   width: 140px;
   /* background: #2b4a86; */
 }
@@ -361,9 +362,56 @@
 .slider .slider-box .slider-relative .slider-circle .circle:hover {
   background: #2b4a86;
 }
+.footer {
+  background: #111826;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 40px;
+  text-align: left;
+  color: white;
+  font-family: Rubik;
+}
+.footer .top-footer {
+  padding: 20px 26px;
+}
+.footer .top-footer .five-box {
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 24px;
+}
+.top-heading {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  text-align: left;
+}
+.footer .top-footer .five-right-box {
+  width: 240px;
+  margin: 0 auto;
+}
+.footer .top-footer .five-right-box input {
+  display: block;
+  width: 280px;
+  height: 40px;
+  border-radius: 6px;
+}
+.footer .top-footer .five-right-box div img {
+  padding: 14px 14px 0 3px;
+}
 
 /* ---------------------------media queries---------------------------- */
 @media (min-width: 480px) {
+  .footer .top-footer .five-box {
+    width: 32%;
+  }
+
+  .footer .top-footer {
+    padding: 22px 26px;
+  }
+  .footer .top-footer .five-right-box {
+    display: inline-block;
+  }
   .slider .slider-box .slider-relative img {
     width: 150px;
   }
@@ -394,8 +442,15 @@
 }
 
 @media (min-width: 769px) {
+  .footer {
+    font-size: 16px;
+  }
+  .top-heading {
+    font-size: 18px;
+  }
+
   .slider .slider-box {
-    padding: 35px 120px;
+    padding: 30px 120px;
   }
   .slider .slider-box .slider-relative .lower-section {
     font-size: 14px;
@@ -474,6 +529,15 @@
   }
 }
 @media (min-width: 992px) {
+  .footer .top-footer {
+    padding: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid white;
+  }
+  .footer .top-footer .five-box {
+    width: 24.5%;
+  }
+
   .btn-blue {
     box-sizing: border-box;
     border: 1.56px solid #304f8c;
@@ -523,6 +587,14 @@
 }
 
 @media (min-width: 1200px) {
+  .footer .top-footer .five-box {
+    width: 19%;
+  }
+  .footer .top-footer .five-right-box {
+    width: 22%;
+    display: inline-block;
+  }
+
   .two-content-grid .left-image {
     width: 39%;
   }
