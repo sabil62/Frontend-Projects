@@ -161,6 +161,9 @@
 .button-nav:hover {
   border: 1.59px solid #041230 !important;
 }
+.h-12 {
+  height: 12px;
+}
 @media (min-width: 991px) {
   .navbar-main {
     position: fixed;
