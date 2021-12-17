@@ -6,3 +6,8 @@ https://sabil62.github.io/leapfrog/
 - Lofi
 - Design Assignments
 - JavaScript Assignments
+
+<p align="center">
+  <img src="./assets/leapf" width="350" title="hover text">
+
+</p>
