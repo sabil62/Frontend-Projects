@@ -138,6 +138,7 @@
 .four-box-column .one-box-column .inner-box {
   padding: 28px;
   max-width: 388px;
+  cursor: pointer;
 
   left: 72px;
   top: 915px;
@@ -195,8 +196,8 @@
   font-size: 0.8rem;
 }
 .btn-blue-box:hover {
-  background-color: #234281;
-  color: white;
+  background: #eaedf3;
+  color: #0b2b69 !important;
 }
 .non-blue {
   background-color: transparent;
@@ -205,13 +206,53 @@
   background: #304f8c;
 }
 .non-blue:hover div {
-  color: rgb(243, 239, 239) !important;
+  color: rgb(243, 239, 239);
 }
 .non-blue:hover div span {
   color: white !important;
 }
 .non-blue:hover .btn-blue-box {
   border: 1.56px solid white;
+}
+.all-blue {
+  background: #304f8c;
+}
+.all-blue:hover {
+  background-color: transparent;
+}
+.all-blue div {
+  color: rgb(243, 239, 239);
+}
+.all-blue div span {
+  color: white !important;
+}
+.all-blue .btn-blue-box {
+  background: #eaedf3;
+  color: #304f8c;
+}
+.all-blue:hover div {
+  color: #0b2b69;
+}
+.all-blue:hover div span {
+  color: #0b2b69 !important;
+}
+.relative-box {
+  position: relative;
+}
+.relative-box .popular {
+  position: absolute;
+  padding: 12px 40px;
+  color: #304f8c;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  background: #94f2e9;
+  border-radius: 100px;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .btn-blue .btn-blue-left {
   display: inline-block;
