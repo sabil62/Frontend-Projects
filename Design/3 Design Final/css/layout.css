@@ -95,6 +95,7 @@
   background-color: white;
   height: 108px;
   width: 100%;
+  z-index: 2;
 }
 
 .navbar-main .container a {
