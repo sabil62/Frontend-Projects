@@ -198,6 +198,21 @@
   background-color: #234281;
   color: white;
 }
+.non-blue {
+  background-color: transparent;
+}
+.non-blue:hover {
+  background: #304f8c;
+}
+.non-blue:hover div {
+  color: rgb(243, 239, 239) !important;
+}
+.non-blue:hover div span {
+  color: white !important;
+}
+.non-blue:hover .btn-blue-box {
+  border: 1.56px solid white;
+}
 .btn-blue .btn-blue-left {
   display: inline-block;
   padding: 10px 0;
@@ -227,13 +242,16 @@
   font-weight: 400;
   line-height: 30px;
 }
-.bold-currency {
+.bold-currency span.sec {
+  display: inline-block;
   font-size: 12px;
   font-weight: 400;
   line-height: 30px;
   color: #11182699;
+  vertical-align: top;
 }
 .bold-currency span {
+  display: inline-block;
   font-size: 32px;
   color: #111826;
   font-weight: 700;
