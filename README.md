@@ -8,10 +8,11 @@ https://sabil62.github.io/leapfrog/
 - JavaScript Assignments
 
 
-
+### Assignments
 <p align="center">
   <img src="https://github.com/sabil62/leapfrog/blob/main/assets/leapf.jpg" width="800" title="main table">
 </p>
+
 ### Lofi  
   <p align="center">
   <img src="https://github.com/sabil62/leapfrog/blob/main/1Lofi/Lofi%201%20Tutangles.png" width="800" title="lofi">  
