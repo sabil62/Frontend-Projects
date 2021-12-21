@@ -33,3 +33,16 @@ function searchByName(arr, name) {
 }
 
 console.log(searchByName(fruits, "apple"));
+
+//-----------------------searchByKeyName
+function searchByKey(arr, key, name) {
+  let value = arr.map((c, index) => {
+    if (arr[index][key].toLowerCase() == name.toLowerCase()) {
+      return arr[index];
+    }
+  });
+  //to filter undefined
+  return value.filter((c) => c !== undefined);
+}
+
+console.log(searchByKey(fruits, "name", "banana"));
