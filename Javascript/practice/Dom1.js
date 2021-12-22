@@ -26,10 +26,15 @@ points.forEach((c) => {
   newElem.style.height = "22px";
   newElem.style.width = "22px";
   newElem.style.borderRadius = "50%";
-  newElem.style.background = "#6f6fd8";
+  newElem.style.background = "rgb(101,101,200)";
   newElem.style.position = "absolute";
+  newElem.style.cursor = "pointer";
   newElem.style.top = c.x + "px";
   newElem.style.left = c.y + "px";
 
   first.appendChild(newElem);
+  newElem.onclick = function (e) {
+    // e.target is like newElem(so using newElem.style is equi to e.target.style)
+    e.target.style.background = "#e45757";
+  };
 });
