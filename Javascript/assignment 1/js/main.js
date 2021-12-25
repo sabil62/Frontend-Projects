@@ -67,28 +67,28 @@ function indicatorOn(indexOn) {
 }
 //carousel move direction
 function carouselMoveTo(moveDirection, prevDirection) {
-  console.log(moveDirection);
-  if (Math.abs(moveDirection - prevDirection) > containerWidth * 3) {
-    carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+  let timing = 10;
+  if (Math.abs(moveDirection - prevDirection) > containerWidth * 2) {
+    timing = 1;
   } else {
-    let nextMove = setInterval(() => {
-      //next
-      if (moveDirection < prevDirection) {
-        //(-600<0)
-        prevDirection -= 10;
-        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
-      } else {
-        //prev
-        prevDirection += 10;
-        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
-      }
-
-      if (prevDirection === moveDirection) {
-        console.log("done");
-        clearInterval(nextMove);
-      }
-    }, 10);
+    timing = 10;
   }
+  let nextMove = setInterval(() => {
+    //next
+    if (moveDirection < prevDirection) {
+      //(-600<0)
+      prevDirection -= 10;
+      carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+    } else {
+      //prev
+      prevDirection += 10;
+      carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+    }
+
+    if (prevDirection === moveDirection) {
+      clearInterval(nextMove);
+    }
+  }, timing);
 
   // carouselContainer.style.transform = `translateX(${moveDirection}px)`;
 }
@@ -126,7 +126,6 @@ for (let i = 0; i < indicator.length; i++) {
     let prevDirection = moveXdirection;
     moveXdirection = i * -600;
     indexOfImage = i + 1;
-    console.log(moveXdirection + "fd" + indexOfImage);
     carouselMoveTo(moveXdirection, prevDirection);
     indicatorOn(i);
   };

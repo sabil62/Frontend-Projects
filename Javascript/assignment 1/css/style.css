@@ -7,8 +7,8 @@
 }
 .carousel-container-img {
   /* display: flex; */
-  display: relative;
-  transform: translateX(0);
+  position: relative;
+  /* transform: translateX(0); */
   /* transition: transform 0.3s; */
 }
 .carousel-container svg {
