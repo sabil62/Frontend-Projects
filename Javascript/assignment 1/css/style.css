@@ -1,0 +1,35 @@
+.carousel-container {
+  width: 600px;
+  height: 400px;
+  margin: 100px auto;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-container img {
+  position: absolute;
+  top: 0px;
+}
+.carousel-container svg {
+  z-index: 100;
+}
+.carousel-container svg {
+  z-index: 100;
+  cursor: pointer;
+}
+.carousel-container svg path {
+  fill: rgb(68, 70, 70);
+}
+.carousel-container svg:hover path {
+  fill: rgb(127, 129, 129);
+}
+.carousel-container .left-box {
+  position: absolute;
+  top: 190px;
+  left: 30px;
+}
+
+.carousel-container .right-box {
+  position: absolute;
+  top: 190px;
+  right: 30px;
+}
