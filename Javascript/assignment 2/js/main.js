@@ -1,19 +1,15 @@
-//to get responsive value
-// var element = document.getElementById('image_1'),
-//     style = window.getComputedStyle(element),
-//     top = style.getPropertyValue('top');
-
 //--------------------indicators------------------
 let carousleContainerMain =
   document.getElementsByClassName("carousel-container")[0];
 //to get all image length
 let totalImages = document.querySelectorAll(".carousel-container-img img");
+//to get responsive value
 let containerWidth = parseInt(getComputedStyle(carousleContainerMain).width);
 
 for (let i = 0; i < totalImages.length; i++) {
   totalImages[i].style.position = "absolute";
   totalImages[i].style.top = "0px";
-  totalImages[i].style.left = i * 600 + "px";
+  totalImages[i].style.left = i * containerWidth + "px";
 }
 
 let indicatorsBox = document.createElement("div");
@@ -79,7 +75,7 @@ function carouselMoveTo(moveDirection, prevDirection) {
     let nextMove = setInterval(() => {
       //next
       if (moveDirection < prevDirection) {
-        //(-600<0)
+        //(-containerWidth<0)
         prevDirection -= 10;
         carouselContainer.style.transform = `translateX(${prevDirection}px)`;
       } else {
@@ -106,7 +102,7 @@ prevButton.onclick = previousSlide;
 for (let i = 0; i < indicator.length; i++) {
   indicator[i].onclick = function () {
     let prevDirection = moveXdirection;
-    moveXdirection = i * -600;
+    moveXdirection = i * -containerWidth;
     indexOfImage = i + 1;
     carouselMoveTo(moveXdirection, prevDirection);
     indicatorOn(i);
@@ -115,7 +111,7 @@ for (let i = 0; i < indicator.length; i++) {
 
 function nextSlide() {
   let prevDirection = moveXdirection;
-  moveXdirection -= 600;
+  moveXdirection -= containerWidth;
   indexOfImage++;
   if (indexOfImage > totalImages.length) {
     moveXdirection = 0;
@@ -127,10 +123,10 @@ function nextSlide() {
 
 function previousSlide() {
   let prevDirection = moveXdirection;
-  moveXdirection += 600;
+  moveXdirection += containerWidth;
   indexOfImage--;
   if (indexOfImage < 1) {
-    moveXdirection = -(totalImages.length - 1) * 600;
+    moveXdirection = -(totalImages.length - 1) * containerWidth;
     indexOfImage = totalImages.length;
   }
   carouselMoveTo(moveXdirection, prevDirection);
