@@ -68,29 +68,30 @@ function indicatorOn(indexOn) {
 // function carouselMoveTo(moveDirection) {
 //   carouselContainer.style.transform = `translateX(${moveDirection}px)`;
 // }
+//carousel move direction
 function carouselMoveTo(moveDirection, prevDirection) {
-  if (Math.abs(moveDirection - prevDirection) > containerWidth * 1.1) {
-    carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+  let timing = 10;
+  if (Math.abs(moveDirection - prevDirection) > containerWidth * 2) {
+    timing = 1;
   } else {
-    let nextMove = setInterval(() => {
-      //next
-      if (moveDirection < prevDirection) {
-        //(-containerWidth<0)
-        prevDirection -= 10;
-        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
-      } else {
-        //prev
-        prevDirection += 10;
-        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
-      }
-
-      if (prevDirection === moveDirection) {
-        clearInterval(nextMove);
-      }
-    }, 10);
+    timing = 10;
   }
+  let nextMove = setInterval(() => {
+    //next
+    if (moveDirection < prevDirection) {
+      //(-600<0)
+      prevDirection -= 10;
+      carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+    } else {
+      //prev
+      prevDirection += 10;
+      carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+    }
 
-  // carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+    if (prevDirection === moveDirection) {
+      clearInterval(nextMove);
+    }
+  }, timing);
 }
 
 //event next
@@ -135,4 +136,4 @@ function previousSlide() {
 
 setInterval(() => {
   nextSlide();
-}, 3800);
+}, 4200);
