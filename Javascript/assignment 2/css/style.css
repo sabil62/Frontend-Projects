@@ -8,7 +8,7 @@
 .carousel-container-img {
   position: relative;
 }
-.carousel-container svg {
+/* .carousel-container svg {
   z-index: 100;
 }
 .carousel-container svg {
@@ -31,4 +31,4 @@
   position: absolute;
   top: 190px;
   right: 30px;
-}
+} */

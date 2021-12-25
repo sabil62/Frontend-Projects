@@ -136,4 +136,4 @@ function previousSlide() {
 
 setInterval(() => {
   nextSlide();
-}, 4200);
+}, 4400);
