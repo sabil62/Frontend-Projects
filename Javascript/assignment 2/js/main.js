@@ -1,8 +1,20 @@
+//to get responsive value
+// var element = document.getElementById('image_1'),
+//     style = window.getComputedStyle(element),
+//     top = style.getPropertyValue('top');
+
 //--------------------indicators------------------
 let carousleContainerMain =
   document.getElementsByClassName("carousel-container")[0];
 //to get all image length
 let totalImages = document.querySelectorAll(".carousel-container-img img");
+let containerWidth = parseInt(getComputedStyle(carousleContainerMain).width);
+
+for (let i = 0; i < totalImages.length; i++) {
+  totalImages[i].style.position = "absolute";
+  totalImages[i].style.top = "0px";
+  totalImages[i].style.left = i * 600 + "px";
+}
 
 let indicatorsBox = document.createElement("div");
 
@@ -57,41 +69,74 @@ function indicatorOn(indexOn) {
   indicator[indexOn].style.background = "rgb(70,70,90)";
 }
 //carousel move direction
-function carouselMoveTo(moveDirection) {
-  carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+// function carouselMoveTo(moveDirection) {
+//   carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+// }
+function carouselMoveTo(moveDirection, prevDirection) {
+  if (Math.abs(moveDirection - prevDirection) > containerWidth * 1.1) {
+    carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+  } else {
+    let nextMove = setInterval(() => {
+      //next
+      if (moveDirection < prevDirection) {
+        //(-600<0)
+        prevDirection -= 10;
+        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+      } else {
+        //prev
+        prevDirection += 10;
+        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+      }
+
+      if (prevDirection === moveDirection) {
+        clearInterval(nextMove);
+      }
+    }, 10);
+  }
+
+  // carouselContainer.style.transform = `translateX(${moveDirection}px)`;
 }
 
 //event next
-nextButton.onclick = function () {
+nextButton.onclick = nextSlide;
+
+//event previous
+prevButton.onclick = previousSlide;
+
+for (let i = 0; i < indicator.length; i++) {
+  indicator[i].onclick = function () {
+    let prevDirection = moveXdirection;
+    moveXdirection = i * -600;
+    indexOfImage = i + 1;
+    carouselMoveTo(moveXdirection, prevDirection);
+    indicatorOn(i);
+  };
+}
+
+function nextSlide() {
+  let prevDirection = moveXdirection;
   moveXdirection -= 600;
   indexOfImage++;
   if (indexOfImage > totalImages.length) {
     moveXdirection = 0;
     indexOfImage = 1;
   }
-  carouselMoveTo(moveXdirection);
+  carouselMoveTo(moveXdirection, prevDirection);
   indicatorOn(indexOfImage - 1);
-};
+}
 
-//event previous
-prevButton.onclick = function () {
+function previousSlide() {
+  let prevDirection = moveXdirection;
   moveXdirection += 600;
   indexOfImage--;
   if (indexOfImage < 1) {
-    //this is exactly opposite because we take the first one to last
     moveXdirection = -(totalImages.length - 1) * 600;
     indexOfImage = totalImages.length;
   }
-  carouselMoveTo(moveXdirection);
+  carouselMoveTo(moveXdirection, prevDirection);
   indicatorOn(indexOfImage - 1);
-};
-
-for (let i = 0; i < indicator.length; i++) {
-  indicator[i].onclick = function () {
-    moveXdirection = i * -600;
-    indexOfImage = i + 1;
-    console.log(moveXdirection + "fd" + indexOfImage);
-    carouselMoveTo(moveXdirection);
-    indicatorOn(i);
-  };
 }
+
+setInterval(() => {
+  nextSlide();
+}, 3800);

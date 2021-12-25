@@ -6,8 +6,6 @@
   overflow: hidden;
 }
 .carousel-container-img {
-  transform: translateX(0);
-  transition: transform 0.3s;
   position: relative;
 }
 .carousel-container svg {
