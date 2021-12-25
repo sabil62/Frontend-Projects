@@ -6,7 +6,8 @@
   overflow: hidden;
 }
 .carousel-container-img {
-  display: flex;
+  /* display: flex; */
+  display: relative;
   transform: translateX(0);
   transition: transform 0.3s;
 }

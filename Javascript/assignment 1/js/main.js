@@ -3,6 +3,11 @@ let carousleContainerMain =
   document.getElementsByClassName("carousel-container")[0];
 //to get all image length
 let totalImages = document.querySelectorAll(".carousel-container-img img");
+for (let i = 0; i < totalImages.length; i++) {
+  totalImages[i].style.position = "absolute";
+  totalImages[i].style.top = "0px";
+  totalImages[i].style.left = i * 600 + "px";
+}
 
 let indicatorsBox = document.createElement("div");
 
