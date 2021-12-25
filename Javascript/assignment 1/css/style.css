@@ -5,9 +5,10 @@
   position: relative;
   overflow: hidden;
 }
-.carousel-container img {
-  position: absolute;
-  top: 0px;
+.carousel-container-img {
+  display: flex;
+  transform: translateX(0);
+  transition: transform 0.3s;
 }
 .carousel-container svg {
   z-index: 100;
