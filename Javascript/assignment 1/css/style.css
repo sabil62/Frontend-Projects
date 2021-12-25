@@ -9,7 +9,7 @@
   /* display: flex; */
   display: relative;
   transform: translateX(0);
-  transition: transform 0.3s;
+  /* transition: transform 0.3s; */
 }
 .carousel-container svg {
   z-index: 100;

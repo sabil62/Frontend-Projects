@@ -41,6 +41,10 @@ carousleContainerMain.appendChild(indicatorsBox);
 let carouselContainer = document.getElementsByClassName(
   "carousel-container-img"
 )[0];
+
+//width of container
+let containerWidth = parseInt(getComputedStyle(carousleContainerMain).width);
+
 //buttons
 let nextButton = document.getElementsByClassName("right-box")[0];
 let prevButton = document.getElementsByClassName("left-box")[0];
@@ -62,24 +66,50 @@ function indicatorOn(indexOn) {
   indicator[indexOn].style.background = "rgb(70,70,90)";
 }
 //carousel move direction
-function carouselMoveTo(moveDirection) {
-  carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+function carouselMoveTo(moveDirection, prevDirection) {
+  console.log(moveDirection);
+  if (Math.abs(moveDirection - prevDirection) > containerWidth * 3) {
+    carouselContainer.style.transform = `translateX(${moveDirection}px)`;
+  } else {
+    let nextMove = setInterval(() => {
+      //next
+      if (moveDirection < prevDirection) {
+        //(-600<0)
+        prevDirection -= 10;
+        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+      } else {
+        //prev
+        prevDirection += 10;
+        carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+      }
+
+      if (prevDirection === moveDirection) {
+        console.log("done");
+        clearInterval(nextMove);
+      }
+    }, 10);
+  }
+
+  // carouselContainer.style.transform = `translateX(${moveDirection}px)`;
 }
 
 //event next
 nextButton.onclick = function () {
+  let prevDirection = moveXdirection;
   moveXdirection -= 600;
   indexOfImage++;
   if (indexOfImage > totalImages.length) {
     moveXdirection = 0;
     indexOfImage = 1;
   }
-  carouselMoveTo(moveXdirection);
+
+  carouselMoveTo(moveXdirection, prevDirection);
   indicatorOn(indexOfImage - 1);
 };
 
 //event previous
 prevButton.onclick = function () {
+  let prevDirection = moveXdirection;
   moveXdirection += 600;
   indexOfImage--;
   if (indexOfImage < 1) {
@@ -87,16 +117,17 @@ prevButton.onclick = function () {
     moveXdirection = -(totalImages.length - 1) * 600;
     indexOfImage = totalImages.length;
   }
-  carouselMoveTo(moveXdirection);
+  carouselMoveTo(moveXdirection, prevDirection);
   indicatorOn(indexOfImage - 1);
 };
 
 for (let i = 0; i < indicator.length; i++) {
   indicator[i].onclick = function () {
+    let prevDirection = moveXdirection;
     moveXdirection = i * -600;
     indexOfImage = i + 1;
     console.log(moveXdirection + "fd" + indexOfImage);
-    carouselMoveTo(moveXdirection);
+    carouselMoveTo(moveXdirection, prevDirection);
     indicatorOn(i);
   };
 }
