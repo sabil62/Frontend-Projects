@@ -1,15 +1,14 @@
+//                        carousel-container-1
 let startCarousel = function (mainClassName, transitionTime, holdTime) {
-  let transitionTime = transitionTime || 20;
-  let holdTime = holdTime || 4000;
   let mainClass = document.getElementsByClassName(`${mainClassName}`);
   let carouselContainer = document.querySelector(
-    `.${mainClassName} carousel-container-img`
+    `.${mainClassName} .carousel-container-img`
   );
   let images = document.querySelectorAll(
     `.${mainClassName} .carousel-container-img img`
   );
   let imageCarousel = new ImageCarousel(
-    mainClass,
+    mainClass[0],
     carouselContainer,
     images,
     transitionTime,
@@ -19,20 +18,85 @@ let startCarousel = function (mainClassName, transitionTime, holdTime) {
 };
 
 class ImageCarousel {
-  constructor(
-    mainClassName,
-    carouselContainer,
-    images,
-    transitionTime,
-    holdTime
-  ) {
-    this.mainClassName = mainClassName;
+  constructor(mainClass, carouselContainer, images, transitionTime, holdTime) {
+    this.mainClass = mainClass;
     this.carouselContainer = carouselContainer;
     this.images = images;
     this.transitionTime = transitionTime;
     this.holdTime = holdTime;
+
+    //variables
+    this.imageWidth;
+    this.imageHeight;
+    this.circleIndicator;
   }
-  setCarousel() {}
+  setCarousel() {
+    // let mainClassDoc = document.getElementsByClassName(this.mainClass);
+    this.imageHeight = parseInt(getComputedStyle(this.mainClass).height);
+    this.imageWidth = parseInt(getComputedStyle(this.mainClass).width);
+    console.log(this.imageWidth);
+    this.setImagesParallelly();
+    this.setArrows();
+    this.setIndicators();
+  }
+  setImagesParallelly() {
+    for (let i = 0; i < this.images.length; i++) {
+      this.images[i].style.position = "absolute";
+      this.images[i].style.left = i * this.imageWidth + "px";
+    }
+  }
+  setArrows() {
+    let nextArrow = document.createElement("img");
+    let prevArrow = document.createElement("img");
+
+    nextArrow.style.height = "20px";
+    nextArrow.style.width = "20px";
+    nextArrow.src = "./images/right.png";
+    nextArrow.style.position = "absolute";
+    nextArrow.style.top = "50%";
+    nextArrow.style.right = "2%";
+    nextArrow.style.transform = "translate(-50%,-50%)";
+    nextArrow.style.zIndex = "200";
+    nextArrow.style.cursor = "pointer";
+
+    this.carouselContainer.appendChild(nextArrow);
+
+    prevArrow.style.height = "20px";
+    prevArrow.style.width = "20px";
+    prevArrow.src = "./images/left.png";
+    prevArrow.style.position = "absolute";
+    prevArrow.style.top = "50%";
+    prevArrow.style.left = "5%";
+    prevArrow.style.transform = "translate(-50%,-50%)";
+    prevArrow.style.zIndex = "200";
+    prevArrow.style.cursor = "pointer";
+    this.carouselContainer.appendChild(prevArrow);
+  }
+  setIndicators() {
+    let indicatorBox = document.createElement("div");
+
+    indicatorBox.style.width = (this.images.length * this.imageWidth) / 25;
+    indicatorBox.style.position = "absolute";
+    indicatorBox.style.bottom = "2%";
+    indicatorBox.style.left = "50%";
+    indicatorBox.style.transform = "translate(-50%,-50%)";
+    indicatorBox.style.zIndex = "200";
+
+    for (let i = 0; i < this.images.length; i++) {
+      this.circleIndicator = document.createElement("div");
+      this.circleIndicator.style.height = this.imageWidth / 54 + "px";
+      this.circleIndicator.style.width = this.imageWidth / 54 + "px";
+      this.circleIndicator.style.border = "2px solid rgb(60,60,90)";
+      this.circleIndicator.style.borderRadius = "50%";
+      this.circleIndicator.style.display = "inline-block";
+      this.circleIndicator.style.marginLeft = "8px";
+      this.circleIndicator.className = "indicator";
+      this.circleIndicator.style.cursor = "pointer";
+      indicatorBox.appendChild(this.circleIndicator);
+    }
+
+    this.carouselContainer.appendChild(indicatorBox);
+  }
 }
 
 // //--------------------indicators------------------
