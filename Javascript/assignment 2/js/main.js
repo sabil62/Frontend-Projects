@@ -1,23 +1,21 @@
 //                        carousel-container-1
 let startCarousel = function (mainClassName, transitionTime, holdTime) {
   let mainClass = document.getElementsByClassName(mainClassName);
-  console.log(mainClass[0]);
-  for (let i = 0; i < mainClass.length; i++) {
-    let carouselContainer = document.querySelector(
-      `.${mainClassName} .carousel-container-img`
-    );
-    let images = document.querySelectorAll(
-      `.${mainClassName} .carousel-container-img img`
-    );
-    var imageCarousel = new ImageCarousel(
-      mainClass[i],
-      carouselContainer,
-      images,
-      transitionTime,
-      holdTime
-    );
-    imageCarousel.setCarousel();
-  }
+
+  let carouselContainer = document.querySelector(
+    `.${mainClassName} .carousel-container-img`
+  );
+  let images = document.querySelectorAll(
+    `.${mainClassName} .carousel-container-img img`
+  );
+  var imageCarousel = new ImageCarousel(
+    mainClass[0],
+    carouselContainer,
+    images,
+    transitionTime,
+    holdTime
+  );
+  imageCarousel.setCarousel();
 };
 
 class ImageCarousel {
@@ -48,6 +46,7 @@ class ImageCarousel {
     this.prevArrow;
     this.previousWidth;
     this.currentWidth;
+    this.setIntervalAnimationId;
   }
   setCarousel() {
     // let mainClassDoc = document.getElementsByClassName(this.mainClass);
@@ -58,9 +57,10 @@ class ImageCarousel {
     this.setIndicators();
     // this.circleIndicator = document.getElementsByClassName("indicator");
     this.indicatorOn(0);
+    this.indicatorClickMove();
     setInterval(() => {
       this.nextImage();
-    }, 4500);
+    }, this.holdTime);
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
@@ -129,10 +129,11 @@ class ImageCarousel {
     this.mainClass.appendChild(this.indicatorBox);
   }
   nextImage() {
+    clearInterval(this.setIntervalAnimationId);
+    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     if (this.currentImageIndex >= this.images.length) {
       this.currentImageIndex = 0;
     }
-    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     this.currentWidth = this.currentImageIndex * this.imageWidth;
     // this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
     this.carouselAnimation(this.currentWidth, this.previousWidth);
@@ -140,10 +141,11 @@ class ImageCarousel {
     this.currentImageIndex++;
   }
   prevImage() {
+    clearInterval(this.setIntervalAnimationId);
+    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     if (this.currentImageIndex <= 1) {
       this.currentImageIndex = this.images.length + 1;
     }
-    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     //-2 because currentImageIndex++ issue
     this.currentWidth = (this.currentImageIndex - 2) * this.imageWidth;
     // this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
@@ -161,13 +163,11 @@ class ImageCarousel {
     }
   }
   carouselAnimation(current, previous) {
-    let timing = 10;
+    let timing = (this.transitionTime * 10) / this.imageWidth;
     if (Math.abs(current - previous) > this.imageWidth * 2) {
       timing = 1;
-    } else {
-      timing = 10;
     }
-    let nextMove = setInterval(() => {
+    this.setIntervalAnimationId = setInterval(() => {
       if (current < previous) {
         previous -= 10;
         this.carouselContainer.style.transform = `translateX(-${previous}px)`;
@@ -176,9 +176,20 @@ class ImageCarousel {
         this.carouselContainer.style.transform = `translateX(-${previous}px)`;
       }
       if (previous === current) {
-        clearInterval(nextMove);
+        clearInterval(this.setIntervalAnimationId);
       }
     }, timing);
+  }
+  indicatorClickMove() {
+    clearInterval(this.setIntervalAnimationId);
+    for (let i = 0; i < this.circleIndicator.length; i++) {
+      this.circleIndicator[i].onclick = (e) => {
+        this.indicatorOn(i);
+        let current = i * this.imageWidth;
+        this.currentImageIndex = i + 1;
+        this.carouselAnimation(current, this.previousWidth);
+      };
+    }
   }
 }
 
