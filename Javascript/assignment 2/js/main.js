@@ -25,19 +25,31 @@ class ImageCarousel {
     this.transitionTime = transitionTime;
     this.holdTime = holdTime;
 
+    //bind function
+    this.setCarousel = this.setCarousel.bind(this);
+    this.setImagesParallelly = this.setImagesParallelly.bind(this);
+    this.setArrows = this.setArrows.bind(this);
+    this.setIndicators = this.setIndicators.bind(this);
+    this.nextImage = this.nextImage.bind(this);
+
     //variables
     this.imageWidth;
     this.imageHeight;
     this.circleIndicator;
+    this.currentImageIndex = 1;
+    this.nextArrow;
+    this.prevArrow;
   }
   setCarousel() {
     // let mainClassDoc = document.getElementsByClassName(this.mainClass);
     this.imageHeight = parseInt(getComputedStyle(this.mainClass).height);
     this.imageWidth = parseInt(getComputedStyle(this.mainClass).width);
-    console.log(this.imageWidth);
     this.setImagesParallelly();
     this.setArrows();
     this.setIndicators();
+    this.nextArrow = document.getElementsByClassName("nextArrow")[0];
+    this.prevArrow = document.getElementsByClassName("prevArrow")[0];
+    this.nextImage();
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
@@ -58,8 +70,9 @@ class ImageCarousel {
     nextArrow.style.transform = "translate(-50%,-50%)";
     nextArrow.style.zIndex = "200";
     nextArrow.style.cursor = "pointer";
+    nextArrow.className = "nextArrow";
 
-    this.carouselContainer.appendChild(nextArrow);
+    this.mainClass.appendChild(nextArrow);
 
     prevArrow.style.height = "20px";
     prevArrow.style.width = "20px";
@@ -70,7 +83,8 @@ class ImageCarousel {
     prevArrow.style.transform = "translate(-50%,-50%)";
     prevArrow.style.zIndex = "200";
     prevArrow.style.cursor = "pointer";
-    this.carouselContainer.appendChild(prevArrow);
+    prevArrow.className = "prevArrow";
+    this.mainClass.appendChild(prevArrow);
   }
   setIndicators() {
     let indicatorBox = document.createElement("div");
@@ -95,7 +109,24 @@ class ImageCarousel {
       indicatorBox.appendChild(this.circleIndicator);
     }
 
-    this.carouselContainer.appendChild(indicatorBox);
+    this.mainClass.appendChild(indicatorBox);
+  }
+  nextImage() {
+    this.nextArrow.addEventListener("click", (e) => {
+      this.carouselContainer.style.transform = `translateX(-${
+        this.currentImageIndex * this.imageWidth
+      }px)`;
+      this.currentImageIndex++;
+    });
+  }
+  prevImage() {
+    this.prevArrow.addEventListener("click", (e) => {
+      this.carouselContainer.style.transform = `translateX(${
+        this.currentImageIndex * this.imageWidth
+      }px)`;
+      this.currentImageIndex--;
+      console.log("done");
+    });
   }
 }
 
