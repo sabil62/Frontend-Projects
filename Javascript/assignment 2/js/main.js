@@ -58,6 +58,9 @@ class ImageCarousel {
     this.setIndicators();
     // this.circleIndicator = document.getElementsByClassName("indicator");
     this.indicatorOn(0);
+    setInterval(() => {
+      this.nextImage();
+    }, 4500);
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
@@ -131,11 +134,10 @@ class ImageCarousel {
     }
     this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     this.currentWidth = this.currentImageIndex * this.imageWidth;
-    this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    // this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    this.carouselAnimation(this.currentWidth, this.previousWidth);
     this.indicatorOn(this.currentImageIndex);
     this.currentImageIndex++;
-
-    console.log(this.currentImageIndex);
   }
   prevImage() {
     if (this.currentImageIndex <= 1) {
@@ -144,11 +146,10 @@ class ImageCarousel {
     this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     //-2 because currentImageIndex++ issue
     this.currentWidth = (this.currentImageIndex - 2) * this.imageWidth;
-    this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    // this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    this.carouselAnimation(this.currentWidth, this.previousWidth);
     this.indicatorOn(this.currentImageIndex - 2);
     this.currentImageIndex--;
-
-    console.log(this.currentImageIndex);
   }
   indicatorOn(index) {
     this.indicatorOff();
@@ -159,19 +160,53 @@ class ImageCarousel {
       this.circleIndicator[i].style.background = "transparent";
     }
   }
+  carouselAnimation(current, previous) {
+    let timing = 10;
+    if (Math.abs(current - previous) > this.imageWidth * 2) {
+      timing = 1;
+    } else {
+      timing = 10;
+    }
+    let nextMove = setInterval(() => {
+      if (current < previous) {
+        previous -= 10;
+        this.carouselContainer.style.transform = `translateX(-${previous}px)`;
+      } else {
+        previous += 10;
+        this.carouselContainer.style.transform = `translateX(-${previous}px)`;
+      }
+      if (previous === current) {
+        clearInterval(nextMove);
+      }
+    }, timing);
+  }
 }
-// function nextSlide() {
-//   let prevDirection = moveXdirection;
-//   moveXdirection -= containerWidth;
-//   indexOfImage++;
-//   if (indexOfImage > totalImages.length) {
-//     moveXdirection = 0;
-//     indexOfImage = 1;
-//   }
-//   carouselMoveTo(moveXdirection, prevDirection);
-//   indicatorOn(indexOfImage - 1);
-// }
 
+// //carousel move direction
+// function carouselMoveTo(moveDirection, prevDirection) {
+//   let timing = 10;
+//   if (Math.abs(moveDirection - prevDirection) > containerWidth * 2) {
+//     timing = 1;
+//   } else {
+//     timing = 10;
+//   }
+//   let nextMove = setInterval(() => {
+//     //next
+//     if (moveDirection < prevDirection) {
+//       //(-600<0)
+//       prevDirection -= 10;
+//       carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+//     } else {
+//       //prev
+//       prevDirection += 10;
+//       carouselContainer.style.transform = `translateX(${prevDirection}px)`;
+//     }
+
+//     if (prevDirection === moveDirection) {
+//       clearInterval(nextMove);
+//     }
+//   }, timing);
+// }
 // //--------------------indicators------------------
 // let carousleContainerMain =
 //   document.getElementsByClassName("carousel-container")[0];
