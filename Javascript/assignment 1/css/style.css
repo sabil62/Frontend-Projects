@@ -4,6 +4,7 @@
   margin: 100px auto;
   position: relative;
   overflow: hidden;
+  box-shadow: 4px 6px 32px rgba(61, 67, 68, 0.363);
 }
 .carousel-container-img {
   /* display: flex; */
