@@ -39,6 +39,8 @@ class ImageCarousel {
     this.currentImageIndex = 1;
     this.nextArrow;
     this.prevArrow;
+    this.previousWidth;
+    this.currentWidth;
   }
   setCarousel() {
     // let mainClassDoc = document.getElementsByClassName(this.mainClass);
@@ -49,7 +51,11 @@ class ImageCarousel {
     this.setIndicators();
     this.nextArrow = document.getElementsByClassName("nextArrow")[0];
     this.prevArrow = document.getElementsByClassName("prevArrow")[0];
-    this.nextImage();
+    //two different techniques to do same thing
+    this.nextArrow.onclick = (e) => {
+      this.nextImage();
+    };
+    this.prevArrow.onclick = this.prevImage.bind(this);
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
@@ -112,23 +118,38 @@ class ImageCarousel {
     this.mainClass.appendChild(indicatorBox);
   }
   nextImage() {
-    this.nextArrow.addEventListener("click", (e) => {
-      this.carouselContainer.style.transform = `translateX(-${
-        this.currentImageIndex * this.imageWidth
-      }px)`;
-      this.currentImageIndex++;
-    });
+    if (this.currentImageIndex >= this.images.length) {
+      this.currentImageIndex = 0;
+    }
+    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
+    this.currentWidth = this.currentImageIndex * this.imageWidth;
+    this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    this.currentImageIndex++;
+    console.log(this.currentImageIndex);
   }
   prevImage() {
-    this.prevArrow.addEventListener("click", (e) => {
-      this.carouselContainer.style.transform = `translateX(${
-        this.currentImageIndex * this.imageWidth
-      }px)`;
-      this.currentImageIndex--;
-      console.log("done");
-    });
+    if (this.currentImageIndex <= 1) {
+      this.currentImageIndex = this.images.length + 1;
+    }
+    this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
+    //-2 because currentImageIndex++ issue
+    this.previousWidth = (this.currentImageIndex - 2) * this.imageWidth;
+    this.carouselContainer.style.transform = `translateX(-${this.previousWidth}px)`;
+    this.currentImageIndex--;
+    console.log(this.currentImageIndex);
   }
 }
+// function nextSlide() {
+//   let prevDirection = moveXdirection;
+//   moveXdirection -= containerWidth;
+//   indexOfImage++;
+//   if (indexOfImage > totalImages.length) {
+//     moveXdirection = 0;
+//     indexOfImage = 1;
+//   }
+//   carouselMoveTo(moveXdirection, prevDirection);
+//   indicatorOn(indexOfImage - 1);
+// }
 
 // //--------------------indicators------------------
 // let carousleContainerMain =
