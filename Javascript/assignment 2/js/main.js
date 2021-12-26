@@ -60,7 +60,7 @@ class ImageCarousel {
     this.indicatorClickMove();
     setInterval(() => {
       this.nextImage();
-    }, this.holdTime);
+    }, this.holdTime + this.transitionTime);
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
