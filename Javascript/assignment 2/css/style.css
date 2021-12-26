@@ -1,9 +1,9 @@
 .carousel-container {
   /* max-width: 600px;
   height: 400px; */
-  margin: 100px auto;
+  margin: 60px auto;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .carousel-container-img {
   position: relative;
@@ -12,6 +12,15 @@
 .carousel-container-1 {
   max-width: 600px;
   height: 400px;
+}
+
+.carousel-container-2 {
+  width: 400px;
+  height: 400px;
+}
+.carousel-container-3 {
+  max-width: 300px;
+  height: 200px;
 }
 /* .carousel-container svg {
   z-index: 100;

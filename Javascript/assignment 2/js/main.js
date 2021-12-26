@@ -1,20 +1,23 @@
 //                        carousel-container-1
 let startCarousel = function (mainClassName, transitionTime, holdTime) {
-  let mainClass = document.getElementsByClassName(`${mainClassName}`);
-  let carouselContainer = document.querySelector(
-    `.${mainClassName} .carousel-container-img`
-  );
-  let images = document.querySelectorAll(
-    `.${mainClassName} .carousel-container-img img`
-  );
-  let imageCarousel = new ImageCarousel(
-    mainClass[0],
-    carouselContainer,
-    images,
-    transitionTime,
-    holdTime
-  );
-  imageCarousel.setCarousel();
+  let mainClass = document.getElementsByClassName(mainClassName);
+  console.log(mainClass[0]);
+  for (let i = 0; i < mainClass.length; i++) {
+    let carouselContainer = document.querySelector(
+      `.${mainClassName} .carousel-container-img`
+    );
+    let images = document.querySelectorAll(
+      `.${mainClassName} .carousel-container-img img`
+    );
+    var imageCarousel = new ImageCarousel(
+      mainClass[i],
+      carouselContainer,
+      images,
+      transitionTime,
+      holdTime
+    );
+    imageCarousel.setCarousel();
+  }
 };
 
 class ImageCarousel {
@@ -31,11 +34,15 @@ class ImageCarousel {
     this.setArrows = this.setArrows.bind(this);
     this.setIndicators = this.setIndicators.bind(this);
     this.nextImage = this.nextImage.bind(this);
+    this.prevImage = this.prevImage.bind(this);
+    this.indicatorOn = this.indicatorOn.bind(this);
+    this.indicatorOff = this.indicatorOff.bind(this);
 
     //variables
     this.imageWidth;
     this.imageHeight;
-    this.circleIndicator;
+    this.indicatorBox;
+    this.circleIndicator = [];
     this.currentImageIndex = 1;
     this.nextArrow;
     this.prevArrow;
@@ -49,13 +56,8 @@ class ImageCarousel {
     this.setImagesParallelly();
     this.setArrows();
     this.setIndicators();
-    this.nextArrow = document.getElementsByClassName("nextArrow")[0];
-    this.prevArrow = document.getElementsByClassName("prevArrow")[0];
-    //two different techniques to do same thing
-    this.nextArrow.onclick = (e) => {
-      this.nextImage();
-    };
-    this.prevArrow.onclick = this.prevImage.bind(this);
+    // this.circleIndicator = document.getElementsByClassName("indicator");
+    this.indicatorOn(0);
   }
   setImagesParallelly() {
     for (let i = 0; i < this.images.length; i++) {
@@ -91,31 +93,37 @@ class ImageCarousel {
     prevArrow.style.cursor = "pointer";
     prevArrow.className = "prevArrow";
     this.mainClass.appendChild(prevArrow);
+
+    //two different techniques to do same thing
+    nextArrow.onclick = (e) => {
+      this.nextImage();
+    };
+    prevArrow.onclick = this.prevImage.bind(this);
   }
   setIndicators() {
-    let indicatorBox = document.createElement("div");
+    this.indicatorBox = document.createElement("div");
 
-    indicatorBox.style.width = (this.images.length * this.imageWidth) / 25;
-    indicatorBox.style.position = "absolute";
-    indicatorBox.style.bottom = "2%";
-    indicatorBox.style.left = "50%";
-    indicatorBox.style.transform = "translate(-50%,-50%)";
-    indicatorBox.style.zIndex = "200";
+    this.indicatorBox.style.width = (this.images.length * this.imageWidth) / 25;
+    this.indicatorBox.style.position = "absolute";
+    this.indicatorBox.style.bottom = "2%";
+    this.indicatorBox.style.left = "50%";
+    this.indicatorBox.style.transform = "translate(-50%,-50%)";
+    this.indicatorBox.style.zIndex = "200";
 
     for (let i = 0; i < this.images.length; i++) {
-      this.circleIndicator = document.createElement("div");
-      this.circleIndicator.style.height = this.imageWidth / 54 + "px";
-      this.circleIndicator.style.width = this.imageWidth / 54 + "px";
-      this.circleIndicator.style.border = "2px solid rgb(60,60,90)";
-      this.circleIndicator.style.borderRadius = "50%";
-      this.circleIndicator.style.display = "inline-block";
-      this.circleIndicator.style.marginLeft = "8px";
-      this.circleIndicator.className = "indicator";
-      this.circleIndicator.style.cursor = "pointer";
-      indicatorBox.appendChild(this.circleIndicator);
+      this.circleIndicator[i] = document.createElement("div");
+      this.circleIndicator[i].style.height = this.imageWidth / 54 + "px";
+      this.circleIndicator[i].style.width = this.imageWidth / 54 + "px";
+      this.circleIndicator[i].style.border = "2px solid rgb(60,60,90)";
+      this.circleIndicator[i].style.borderRadius = "50%";
+      this.circleIndicator[i].style.display = "inline-block";
+      this.circleIndicator[i].style.marginLeft = "8px";
+      this.circleIndicator[i].className = "indicator";
+      this.circleIndicator[i].style.cursor = "pointer";
+      this.indicatorBox.appendChild(this.circleIndicator[i]);
     }
 
-    this.mainClass.appendChild(indicatorBox);
+    this.mainClass.appendChild(this.indicatorBox);
   }
   nextImage() {
     if (this.currentImageIndex >= this.images.length) {
@@ -124,7 +132,9 @@ class ImageCarousel {
     this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     this.currentWidth = this.currentImageIndex * this.imageWidth;
     this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    this.indicatorOn(this.currentImageIndex);
     this.currentImageIndex++;
+
     console.log(this.currentImageIndex);
   }
   prevImage() {
@@ -133,10 +143,21 @@ class ImageCarousel {
     }
     this.previousWidth = (this.currentImageIndex - 1) * this.imageWidth;
     //-2 because currentImageIndex++ issue
-    this.previousWidth = (this.currentImageIndex - 2) * this.imageWidth;
-    this.carouselContainer.style.transform = `translateX(-${this.previousWidth}px)`;
+    this.currentWidth = (this.currentImageIndex - 2) * this.imageWidth;
+    this.carouselContainer.style.transform = `translateX(-${this.currentWidth}px)`;
+    this.indicatorOn(this.currentImageIndex - 2);
     this.currentImageIndex--;
+
     console.log(this.currentImageIndex);
+  }
+  indicatorOn(index) {
+    this.indicatorOff();
+    this.circleIndicator[index].style.background = "rgb(60,60,90)";
+  }
+  indicatorOff() {
+    for (let i = 0; i < this.circleIndicator.length; i++) {
+      this.circleIndicator[i].style.background = "transparent";
+    }
   }
 }
 // function nextSlide() {
