@@ -31,14 +31,14 @@ class Ant {
   }
   isWallCollisionInX() {
     //if x = 0 or x > canvaswidth
-    if (this.x <= 0 || this.x + this.diameter * 1.1 >= this.canvasWidth) {
+    if (this.x <= 4 || this.x + this.diameter * 1.1 >= this.canvasWidth) {
       return true;
     } else {
       return false;
     }
   }
   isWallCollisionInY() {
-    if (this.y <= 0 || this.y + this.diameter * 1.1 >= this.canvasHeight) {
+    if (this.y <= 4 || this.y + this.diameter * 1.1 >= this.canvasHeight) {
       return true;
     } else {
       return false;
