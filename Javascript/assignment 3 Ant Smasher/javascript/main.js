@@ -1,15 +1,15 @@
-class Ball {
+class Ant {
   constructor(mainClass, canvasClass, diameter, canvasWidth, canvasHeight) {
     this.mainClass = mainClass;
     this.diameter = diameter;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.ballElement;
+    this.antElement;
     this.x = 0;
     this.y = 0;
     this.dirX = 0;
     this.dirY = 0;
-    this.backgroundColor;
+
     this.canvasElement = document.querySelector(
       `.${mainClass} .${canvasClass}`
     );
@@ -22,9 +22,7 @@ class Ball {
     this.dirX = dirX;
     this.dirY = dirY;
   }
-  setBackgroundColor(color) {
-    this.backgroundColor = color;
-  }
+
   reverseDirX() {
     this.dirX *= -1;
   }
@@ -33,41 +31,45 @@ class Ball {
   }
   isWallCollisionInX() {
     //if x = 0 or x > canvaswidth
-    if (this.x <= 0 || this.x + this.diameter * 1.05 >= this.canvasWidth) {
+    if (this.x <= 0 || this.x + this.diameter * 1.1 >= this.canvasWidth) {
       return true;
     } else {
       return false;
     }
   }
   isWallCollisionInY() {
-    if (this.y <= 0 || this.y + this.diameter * 1.05 >= this.canvasHeight) {
+    if (this.y <= 0 || this.y + this.diameter * 1.1 >= this.canvasHeight) {
       return true;
     } else {
       return false;
     }
   }
-  //if collide then change box1.changeBall(box2)
-  changeBallDir(collidingBall) {
+  //if collide then change box1.changeAnt(box2)
+  changeAntDir(collidingAnt) {
     let dirXstore = this.dirX;
-    this.dirX = collidingBall.dirX;
-    collidingBall.dirX = dirXstore;
+    this.dirX = collidingAnt.dirX;
+    collidingAnt.dirX = dirXstore;
 
     let dirYstore = this.dirY;
-    this.dirY = collidingBall.dirY;
-    collidingBall.dirY = dirYstore;
+    this.dirY = collidingAnt.dirY;
+    collidingAnt.dirY = dirYstore;
 
     this.move();
-    collidingBall.move();
+    collidingAnt.move();
   }
-  createBall() {
-    this.ballElement = document.createElement("div");
-    this.ballElement.style.position = "absolute";
-    this.ballElement.style.borderRadius = "50%";
-    this.ballElement.style.width = this.diameter + "px";
-    this.ballElement.style.height = this.diameter + "px";
+  createAnt() {
+    this.antElement = document.createElement("img");
+    this.antElement.style.position = "absolute";
+    this.antElement.src = "./images/ants.gif";
+    this.antElement.style.width = this.diameter + "px";
+    this.antElement.style.height = this.diameter + "px";
 
-    this.ballElement.style.backgroundColor = this.backgroundColor;
-    this.canvasElement.appendChild(this.ballElement);
+    this.canvasElement.appendChild(this.antElement);
+
+    //to smash
+    this.antElement.onclick = (e) => {
+      this.smashAnt();
+    };
   }
 
   move() {
@@ -76,29 +78,32 @@ class Ball {
     this.illustrate();
   }
   illustrate() {
-    this.ballElement.style.top = this.y + "px";
-    this.ballElement.style.left = this.x + "px";
+    this.antElement.style.top = this.y + "px";
+    this.antElement.style.left = this.x + "px";
+  }
+  smashAnt() {
+    this.antElement.style.display = "none";
   }
 }
 
 class Canvas {
   constructor(
     mainClassName,
-    boxColorArr,
-    ballCount,
+
+    antCount,
     diameter,
     canvasWidth,
     canvasHeight,
-    ballSpeed
+    antSpeed
   ) {
     this.mainClassName = mainClassName;
-    this.boxColorArr = boxColorArr;
-    this.ballCount = ballCount;
+
+    this.antCount = antCount;
     this.diameter = diameter;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.ballSpeed = ballSpeed;
-    this.balls = [];
+    this.antSpeed = antSpeed;
+    this.ants = [];
     this.canvasBox;
     this.mainClassElement = document.getElementsByClassName(
       this.mainClassName
@@ -117,12 +122,12 @@ class Canvas {
     this.canvasBox.style.margin = "80px auto";
     this.canvasBox.style.position = "relative";
     this.canvasBox.className = "canvasClass";
+    this.canvasBox.backgroundColor = "#FBFBFB";
 
     this.mainClassElement.appendChild(this.canvasBox);
 
-    this.createBalls();
-    this.moveBalls();
-    this.smashAnts();
+    this.createAnts();
+    this.moveAnts();
   }
   generateRandom(min, max) {
     let difference = max - min;
@@ -131,9 +136,9 @@ class Canvas {
     rand = rand + min;
     return rand;
   }
-  createBalls() {
-    for (let i = 0; i < this.ballCount; i++) {
-      let ball = new Ball(
+  createAnts() {
+    for (let i = 0; i < this.antCount; i++) {
+      let ant = new Ant(
         this.mainClassName,
         this.canvasClassName,
         this.diameter,
@@ -147,61 +152,68 @@ class Canvas {
       let randomY = this.generateRandom(1, 4);
       //   console.log(x + "x " + y + "randx" + randomX + " randY" + randomY);
 
-      let colorIndex = this.generateRandom(0, this.boxColorArr.length);
+      ant.setPosition(x, y);
+      ant.setDirection(randomX, randomY);
 
-      ball.setPosition(x, y);
-      ball.setDirection(randomX, randomY);
-      ball.setBackgroundColor(this.boxColorArr[colorIndex]);
-      //to show balls
-      ball.createBall();
-      ball.illustrate();
+      //to show ants
+      ant.createAnt();
+      ant.illustrate();
+      // ant.smashAnt();
 
-      this.balls[i] = ball;
+      this.ants[i] = ant;
     }
   }
-  moveBalls() {
+  moveAnts() {
     var move = setInterval(() => {
-      for (let i = 0; i < this.ballCount; i++) {
-        if (this.balls[i].isWallCollisionInX()) {
-          this.balls[i].reverseDirX();
+      for (let i = 0; i < this.antCount; i++) {
+        if (this.ants[i].isWallCollisionInX()) {
+          this.ants[i].reverseDirX();
         }
-        if (this.balls[i].isWallCollisionInY()) {
-          this.balls[i].reverseDirY();
+        if (this.ants[i].isWallCollisionInY()) {
+          this.ants[i].reverseDirY();
         }
-        this.balls[i].move();
+        this.ants[i].move();
       }
       this.detectAllCollisionAndChangeDir();
-    }, this.ballSpeed);
+    }, this.antSpeed);
   }
-  isCollisionBetweenTwoBalls(ball1, ball2) {
-    let radiusBall1 = ball1.diameter / 2;
-    let radiusBall2 = ball2.diameter / 2;
+  isCollisionBetweenTwoAnts(ant1, ant2) {
+    let radiusAnt1 = ant1.diameter / 2;
+    let radiusAnt2 = ant2.diameter / 2;
 
-    let radiusSumOfBall = radiusBall1 + radiusBall2;
+    let radiusSumOfAnt = radiusAnt1 + radiusAnt2;
     //we have to offset the radius
-    let x1 = ball1.x + radiusBall1;
-    let x2 = ball2.x + radiusBall2;
+    let x1 = ant1.x + radiusAnt1;
+    let x2 = ant2.x + radiusAnt2;
 
-    let y1 = ball1.y + radiusBall1;
-    let y2 = ball2.y + radiusBall2;
+    let y1 = ant1.y + radiusAnt1;
+    let y2 = ant2.y + radiusAnt2;
 
     let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
-    if (distance <= radiusSumOfBall) {
+    if (distance <= radiusSumOfAnt) {
       return true;
     } else {
       return false;
     }
   }
   detectAllCollisionAndChangeDir() {
-    for (let i = 0; i < this.balls.length; i++) {
-      for (let j = 0; j < this.balls.length; j++) {
+    for (let i = 0; i < this.ants.length; i++) {
+      for (let j = 0; j < this.ants.length; j++) {
         if (i != j) {
-          if (this.isCollisionBetweenTwoBalls(this.balls[i], this.balls[j])) {
-            this.balls[i].changeBallDir(this.balls[j]);
+          if (this.isCollisionBetweenTwoAnts(this.ants[i], this.ants[j])) {
+            this.ants[i].changeAntDir(this.ants[j]);
           }
         }
       }
     }
   }
+  // smashAnts() {
+  //   for (let i = 0; i < this.ants.length; i++) {
+  //     this.ants[i].onclick = (e) => {
+  //       this.ants[i].style.display = "none";
+  //       console.log("clicked");
+  //     };
+  //   }
+  // }
 }
