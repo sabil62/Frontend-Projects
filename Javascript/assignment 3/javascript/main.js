@@ -1,5 +1,5 @@
 class Ball {
-  constructor(mainClass, diameter, canvasWidth) {
+  constructor(mainClass, canvasClass, diameter, canvasWidth) {
     this.mainClass = mainClass;
     this.diameter = diameter;
     this.canvasWidth = canvasWidth;
@@ -9,6 +9,9 @@ class Ball {
     this.dirX = 0;
     this.dirY = 0;
     this.backgroundColor;
+    this.canvasElement = document.querySelector(
+      `.${mainClass} .${canvasClass}`
+    );
   }
   setPosition(x, y) {
     this.x = x;
@@ -63,7 +66,7 @@ class Ball {
     this.ballElement.style.height = this.diameter + "px";
     this.ballElement.style.border = "1px solid rgb(160,160,160)";
     this.ballElement.style.backgroundColor = this.backgroundColor;
-    this.mainClass.appendChild(this.ballElement);
+    this.canvasElement.appendChild(this.ballElement);
   }
 
   move() {
@@ -72,8 +75,8 @@ class Ball {
     this.illustrate();
   }
   illustrate() {
-    this.ballElement.style.top = this.dirY + "px";
-    this.ballElement.style.left = this.dirX + "px";
+    this.ballElement.style.top = this.y + "px";
+    this.ballElement.style.left = this.x + "px";
   }
 }
 
@@ -99,6 +102,7 @@ class Canvas {
     this.mainClassElement = document.getElementsByClassName(
       this.mainClassName
     )[0];
+    this.canvasClassName = "canvasClass";
 
     this.setCanvas();
   }
@@ -109,8 +113,9 @@ class Canvas {
     this.canvasBox.style.height = this.canvasHeight + "px";
     this.canvasBox.style.border = "3px solid rgb(40,40,80)";
     this.canvasBox.style.borderRadius = "5px";
-    this.canvasBox.style.margin = "0 auto";
+    this.canvasBox.style.margin = "80px auto";
     this.canvasBox.style.position = "relative";
+    this.canvasBox.className = "canvasClass";
 
     this.mainClassElement.appendChild(this.canvasBox);
 
@@ -126,7 +131,8 @@ class Canvas {
   createBalls() {
     for (let i = 0; i < this.ballCount; i++) {
       let ball = new Ball(
-        this.mainClassElement,
+        this.mainClassName,
+        this.canvasClassName,
         this.diameter,
         this.canvasWidth
       );
