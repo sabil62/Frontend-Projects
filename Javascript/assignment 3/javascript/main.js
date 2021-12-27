@@ -33,14 +33,14 @@ class Ball {
   }
   isWallCollisionInX() {
     //if x = 0 or x > canvaswidth
-    if (this.x <= 0 || this.x + this.diameter >= this.canvasWidth) {
+    if (this.x <= 0 || this.x + this.diameter * 1.05 >= this.canvasWidth) {
       return true;
     } else {
       return false;
     }
   }
   isWallCollisionInY() {
-    if (this.y <= 0 || this.y + this.diameter >= this.canvasHeight) {
+    if (this.y <= 0 || this.y + this.diameter * 1.05 >= this.canvasHeight) {
       return true;
     } else {
       return false;
@@ -170,7 +170,7 @@ class Canvas {
         this.balls[i].move();
       }
       this.detectAllCollisionAndChangeDir();
-    }, 100);
+    }, 60);
   }
   isCollisionBetweenTwoBalls(ball1, ball2) {
     let radiusBall1 = ball1.diameter / 2;
@@ -193,12 +193,13 @@ class Canvas {
     }
   }
   detectAllCollisionAndChangeDir() {
-    for (let i = 0; i < this.ballCount; i++) {
-      for (let j = 0; j < this.ballCount; j++) {
-        // if (this.isCollisionBetweenTwoBalls(this.ball[i], this.ball[j])) {
-        //   this.ball[i].changeBallDir(this.ball[j]);
-        //   console.log(true);
-        // }
+    for (let i = 0; i < this.balls.length; i++) {
+      for (let j = 0; j < this.balls.length; j++) {
+        if (i != j) {
+          if (this.isCollisionBetweenTwoBalls(this.balls[i], this.balls[j])) {
+            this.balls[i].changeBallDir(this.balls[j]);
+          }
+        }
       }
     }
   }
