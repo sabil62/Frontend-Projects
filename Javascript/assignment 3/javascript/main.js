@@ -65,7 +65,7 @@ class Ball {
     this.ballElement.style.borderRadius = "50%";
     this.ballElement.style.width = this.diameter + "px";
     this.ballElement.style.height = this.diameter + "px";
-    this.ballElement.style.border = "1px solid rgb(160,160,160)";
+
     this.ballElement.style.backgroundColor = this.backgroundColor;
     this.canvasElement.appendChild(this.ballElement);
   }
@@ -113,7 +113,7 @@ class Canvas {
     this.canvasBox.style.width = this.canvasWidth + "px";
     this.canvasBox.style.height = this.canvasHeight + "px";
     this.canvasBox.style.border = "3px solid rgb(40,40,80)";
-    this.canvasBox.style.borderRadius = "5px";
+    this.canvasBox.style.borderRadius = "12px";
     this.canvasBox.style.margin = "80px auto";
     this.canvasBox.style.position = "relative";
     this.canvasBox.className = "canvasClass";
@@ -139,8 +139,8 @@ class Canvas {
         this.canvasWidth,
         this.canvasHeight
       );
-      let x = this.generateRandom(0, this.canvasWidth - this.diameter);
-      let y = this.generateRandom(0, this.canvasHeight - this.diameter);
+      let x = this.generateRandom(0, this.canvasWidth - this.diameter * 1.05);
+      let y = this.generateRandom(0, this.canvasHeight - this.diameter * 1.05);
 
       let randomX = this.generateRandom(1, 4);
       let randomY = this.generateRandom(1, 4);
@@ -170,7 +170,7 @@ class Canvas {
         this.balls[i].move();
       }
       this.detectAllCollisionAndChangeDir();
-    }, 60);
+    }, this.ballSpeed);
   }
   isCollisionBetweenTwoBalls(ball1, ball2) {
     let radiusBall1 = ball1.diameter / 2;
