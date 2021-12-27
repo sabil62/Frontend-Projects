@@ -1,8 +1,9 @@
 class Ball {
-  constructor(mainClass, canvasClass, diameter, canvasWidth) {
+  constructor(mainClass, canvasClass, diameter, canvasWidth, canvasHeight) {
     this.mainClass = mainClass;
     this.diameter = diameter;
     this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
     this.ballElement;
     this.x = 0;
     this.y = 0;
@@ -39,7 +40,7 @@ class Ball {
     }
   }
   isWallCollisionInY() {
-    if (this.y <= 0 || this.y + this.diameter >= this.canvasWidth) {
+    if (this.y <= 0 || this.y + this.diameter >= this.canvasHeight) {
       return true;
     } else {
       return false;
@@ -120,6 +121,7 @@ class Canvas {
     this.mainClassElement.appendChild(this.canvasBox);
 
     this.createBalls();
+    this.moveBalls();
   }
   generateRandom(min, max) {
     let difference = max - min;
@@ -134,24 +136,70 @@ class Canvas {
         this.mainClassName,
         this.canvasClassName,
         this.diameter,
-        this.canvasWidth
+        this.canvasWidth,
+        this.canvasHeight
       );
       let x = this.generateRandom(0, this.canvasWidth - this.diameter);
       let y = this.generateRandom(0, this.canvasHeight - this.diameter);
 
       let randomX = this.generateRandom(1, 4);
       let randomY = this.generateRandom(1, 4);
-      console.log(x + "x " + y + "randx" + randomX + " randY" + randomY);
+      //   console.log(x + "x " + y + "randx" + randomX + " randY" + randomY);
 
       let colorIndex = this.generateRandom(0, this.boxColorArr.length);
 
       ball.setPosition(x, y);
       ball.setDirection(randomX, randomY);
       ball.setBackgroundColor(this.boxColorArr[colorIndex]);
+      //to show balls
       ball.createBall();
       ball.illustrate();
 
       this.balls[i] = ball;
+    }
+  }
+  moveBalls() {
+    var move = setInterval(() => {
+      for (let i = 0; i < this.ballCount; i++) {
+        if (this.balls[i].isWallCollisionInX()) {
+          this.balls[i].reverseDirX();
+        }
+        if (this.balls[i].isWallCollisionInY()) {
+          this.balls[i].reverseDirY();
+        }
+        this.balls[i].move();
+      }
+      this.detectAllCollisionAndChangeDir();
+    }, 100);
+  }
+  isCollisionBetweenTwoBalls(ball1, ball2) {
+    let radiusBall1 = ball1.diameter / 2;
+    let radiusBall2 = ball2.diameter / 2;
+
+    let radiusSumOfBall = radiusBall1 + radiusBall2;
+    //we have to offset the radius
+    let x1 = ball1.x + radiusBall1;
+    let x2 = ball2.x + radiusBall2;
+
+    let y1 = ball1.y + radiusBall1;
+    let y2 = ball2.y + radiusBall2;
+
+    let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+
+    if (distance <= radiusSumOfBall) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  detectAllCollisionAndChangeDir() {
+    for (let i = 0; i < this.ballCount; i++) {
+      for (let j = 0; j < this.ballCount; j++) {
+        // if (this.isCollisionBetweenTwoBalls(this.ball[i], this.ball[j])) {
+        //   this.ball[i].changeBallDir(this.ball[j]);
+        //   console.log(true);
+        // }
+      }
     }
   }
 }
