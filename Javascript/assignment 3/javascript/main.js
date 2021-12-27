@@ -76,3 +76,76 @@ class Ball {
     this.ballElement.style.left = this.dirX + "px";
   }
 }
+
+class Canvas {
+  constructor(
+    mainClassName,
+    boxColorArr,
+    ballCount,
+    diameter,
+    canvasWidth,
+    canvasHeight,
+    ballSpeed
+  ) {
+    this.mainClassName = mainClassName;
+    this.boxColorArr = boxColorArr;
+    this.ballCount = ballCount;
+    this.diameter = diameter;
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    this.ballSpeed = ballSpeed;
+    this.balls = [];
+    this.canvasBox;
+    this.mainClassElement = document.getElementsByClassName(
+      this.mainClassName
+    )[0];
+
+    this.setCanvas();
+  }
+  setCanvas() {
+    this.canvasBox = document.createElement("div");
+
+    this.canvasBox.style.width = this.canvasWidth + "px";
+    this.canvasBox.style.height = this.canvasHeight + "px";
+    this.canvasBox.style.border = "3px solid rgb(40,40,80)";
+    this.canvasBox.style.borderRadius = "5px";
+    this.canvasBox.style.margin = "0 auto";
+    this.canvasBox.style.position = "relative";
+
+    this.mainClassElement.appendChild(this.canvasBox);
+
+    this.createBalls();
+  }
+  generateRandom(min, max) {
+    let difference = max - min;
+    let rand = Math.random();
+    rand = Math.floor(rand * difference);
+    rand = rand + min;
+    return rand;
+  }
+  createBalls() {
+    for (let i = 0; i < this.ballCount; i++) {
+      let ball = new Ball(
+        this.mainClassElement,
+        this.diameter,
+        this.canvasWidth
+      );
+      let x = this.generateRandom(0, this.canvasWidth - this.diameter);
+      let y = this.generateRandom(0, this.canvasHeight - this.diameter);
+
+      let randomX = this.generateRandom(1, 4);
+      let randomY = this.generateRandom(1, 4);
+      console.log(x + "x " + y + "randx" + randomX + " randY" + randomY);
+
+      let colorIndex = this.generateRandom(0, this.boxColorArr.length);
+
+      ball.setPosition(x, y);
+      ball.setDirection(randomX, randomY);
+      ball.setBackgroundColor(this.boxColorArr[colorIndex]);
+      ball.createBall();
+      ball.illustrate();
+
+      this.balls[i] = ball;
+    }
+  }
+}
