@@ -31,6 +31,7 @@ class Car {
     this.setCar();
     this.draw();
     this.projectile;
+    this.projectileYval;
     this.bulletInterval;
   }
   setCar() {
@@ -70,7 +71,12 @@ class Car {
 
     this.bulletInterval = setInterval(() => {
       bulleetY += 6;
+      this.projectileYval = bulleetY;
       this.projectile.style.bottom = bulleetY + "px";
+      if (this.projectileYval > LANEHEIGHT) {
+        this.deleteprojectile();
+        clearInterval(this.bulletInterval);
+      }
     }, 20);
   }
   reverseDirection() {
@@ -93,6 +99,25 @@ class Car {
     } else {
       return false;
     }
+  }
+  detectYCollisionOfProjectile(ourCar) {
+    if (
+      this.y + CARHEIGHT >= LANEHEIGHT - ourCar.projectileYval &&
+      this.x === ourCar.x
+    ) {
+      this.deleteprojectile();
+    }
+    if (
+      this.y + CARHEIGHT >= LANEHEIGHT - ourCar.projectileYval &&
+      this.x === ourCar.x
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  deleteprojectile() {
+    this.projectile.style.display = "none";
   }
   draw() {
     this.car.style.left = this.x + "px";
@@ -277,6 +302,18 @@ class LaneGame {
   bulletProjectilee() {
     this.player.throwProjectile();
     this.bullets--;
+    if (this.bullets < 0) {
+      this.bullets = 0;
+    }
+    setTimeout(() => {}, 1000);
+    // detectYCollisionOfProjectile(ourCar)
+    let bulletInterval = setInterval(() => {
+      for (let i = 0; i < this.enemyCar.length; i++) {
+        if (this.enemyCar[i].detectYCollisionOfProjectile(this.player)) {
+          this.removeEnemyCar(this.enemyCar, i);
+        }
+      }
+    }, 60);
   }
   createEnemyCars() {
     let time = 1800;
