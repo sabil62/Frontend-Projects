@@ -14,18 +14,19 @@ function generateRandom(min, max) {
 }
 
 class Car {
-  constructor(mainClassName, x, y, isPlayer, carType) {
+  constructor(mainClassName, isPlayer, carType) {
     this.mainClassName = mainClassName;
     this.isPlayer = isPlayer;
     this.carType = carType;
     //position variables
     this.car;
-    this.x = x;
-    this.y = y;
+    this.x;
+    this.y;
     this.dirY;
     this.intervalId;
     this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
     this.setCar();
+    this.draw();
   }
   setCar() {
     this.car = document.createElement("img");
@@ -34,6 +35,10 @@ class Car {
     this.car.style.height = CARHEIGHT + "px";
     this.car.style.objectFit = "cover";
     this.car.style.position = "absolute";
+  }
+  setPosition(x, y) {
+    this.x = x;
+    this.y = y;
   }
   move() {
     //move enemy not player
@@ -90,6 +95,10 @@ class LaneGame {
     this.roadElement = document.querySelector(`.${this.mainClassName} .road`);
     this.score = 0;
     this.highScore;
+    this.carElement = [];
+    this.carElementImage = [];
+    this.player;
+    this.playerID;
 
     //game elements
     // this.gameCanvas = document.createElement("div");
@@ -122,6 +131,7 @@ class LaneGame {
     this.selectCarBox();
     // this.hideModal();
   }
+
   scoreCard() {
     this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
   }
@@ -144,14 +154,27 @@ class LaneGame {
 
     //include images
     for (let i = 0; i < this.carTypeArray.length; i++) {
-      let imageDiv = document.createElement("div");
-      let carImage = document.createElement("img");
+      this.carElement[i] = document.createElement("div");
+      this.carElementImage[i] = document.createElement("img");
 
-      imageDiv.classList.add("car-image");
-      carImage.src = `./images/${this.carTypeArray[i]}.png`;
+      this.carElement[i].classList.add("car-image");
+      this.carElementImage[i].src = `./images/${this.carTypeArray[i]}.png`;
 
-      imageDiv.appendChild(carImage);
-      CarBoxFlex.appendChild(imageDiv);
+      this.carElement[i].appendChild(this.carElementImage[i]);
+      CarBoxFlex.appendChild(this.carElement[i]);
+    }
+    this.selectPlayer();
+    this.startGame();
+  }
+  selectPlayer() {
+    for (let i = 0; i < this.carElement.length; i++) {
+      this.carElement[i].onclick = (e) => {
+        this.player = new Car("road", true, this.carTypeArray[i]);
+        console.log(this.carTypeArray[i]);
+        this.player.setPosition(30, 30);
+        this.hideModal();
+        // mainClassName, isPlayer, carType
+      };
     }
   }
 }
