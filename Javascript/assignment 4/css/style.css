@@ -54,10 +54,8 @@
 
 .road-lane-for-animation {
   width: 360px;
-  height: 20000px;
-
+  height: 50000px;
   position: absolute;
-
   bottom: 0;
 }
 
