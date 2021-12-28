@@ -108,3 +108,52 @@
   text-align: center;
   background-color: rgba(113, 61, 165, 0.158);
 }
+.select-car-modal {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* margin: 60px 0; */
+  z-index: 12;
+
+  background-color: rgba(0, 0, 0, 0.582);
+}
+
+.select-car-window {
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  width: 900px;
+  height: 400px;
+  z-index: 20;
+  /* background-color: #6e386ecb; */
+  background-color: rgba(240, 248, 255, 0.274);
+  border-radius: 8px;
+}
+.select-car-header {
+  font-size: 1.98rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.8rem;
+  color: rgb(193, 235, 235);
+  text-shadow: 1px 1px 4px rgb(100, 99, 99);
+}
+.car-box-flex {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 36px 0;
+}
+.car-image {
+  height: 220px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #141518;
+  padding: 45px;
+  cursor: pointer;
+}
+.car-image:hover {
+  background-color: #292b30;
+}
+.car-image:active {
+  transform: scale(0.99);
+}

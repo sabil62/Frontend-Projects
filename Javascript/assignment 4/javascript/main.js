@@ -1,4 +1,4 @@
-let CARTYPES = ["blue-car", "red-car", "white-car", "violet-car", "red-car"];
+let CARTYPES = ["blue-car", "yellow-car", "red-car", "white-car", "violet-car"];
 let LANEHEIGHT = 600;
 let LANEWIDTH = 360;
 let CARHEIGHT = 116;
@@ -98,6 +98,8 @@ class LaneGame {
     this.firstLane = document.createElement("div");
     this.middleLane = document.createElement("div");
     this.lastLane = document.createElement("div");
+    this.selectCarModal = document.createElement("div");
+    this.selectCarWindow = document.createElement("div");
 
     //css classes for styling
     this.roadLaneForAnim.classList.add("road-lane-for-animation");
@@ -105,6 +107,8 @@ class LaneGame {
     this.middleLane.classList.add("middle-lane");
     this.lastLane.classList.add("last-lane");
     this.scoreCountDisplay.classList.add("score-board");
+    this.selectCarModal.classList.add("select-car-modal");
+    this.selectCarWindow.classList.add("select-car-window");
 
     //appendChild to parent Element
     this.roadElement.appendChild(this.roadLaneForAnim);
@@ -112,10 +116,44 @@ class LaneGame {
     this.roadLaneForAnim.appendChild(this.middleLane);
     this.roadLaneForAnim.appendChild(this.lastLane);
     this.mainElement.appendChild(this.scoreCountDisplay);
+    this.mainElement.appendChild(this.selectCarModal);
+    this.selectCarModal.appendChild(this.selectCarWindow);
+
+    this.selectCarBox();
+    // this.hideModal();
   }
   scoreCard() {
     this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
   }
+  showModal() {
+    this.selectCarModal.style.display = "block";
+  }
+  hideModal() {
+    this.selectCarModal.style.display = "none";
+  }
+  selectCarBox() {
+    //title
+    let Header = document.createElement("div");
+    Header.innerHTML = `<h1 class="select-car-header"> Select The Car You Like</h1>`;
+    this.selectCarWindow.appendChild(Header);
+
+    //box containing car imaes
+    let CarBoxFlex = document.createElement("div");
+    CarBoxFlex.classList.add("car-box-flex");
+    this.selectCarWindow.appendChild(CarBoxFlex);
+
+    //include images
+    for (let i = 0; i < this.carTypeArray.length; i++) {
+      let imageDiv = document.createElement("div");
+      let carImage = document.createElement("img");
+
+      imageDiv.classList.add("car-image");
+      carImage.src = `./images/${this.carTypeArray[i]}.png`;
+
+      imageDiv.appendChild(carImage);
+      CarBoxFlex.appendChild(imageDiv);
+    }
+  }
 }
 
-let pp = new LaneGame("game-container-1", "nth");
+let pp = new LaneGame("game-container-1", CARTYPES);
