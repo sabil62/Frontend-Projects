@@ -3,6 +3,7 @@ let LANEHEIGHT = 600;
 let LANEWIDTH = 360;
 let CARHEIGHT = 116;
 let CARWIDTH = 60;
+let GAMEON = true;
 
 class Car {
   constructor(mainClassName, x, y, isPlayer, carType) {
@@ -14,7 +15,8 @@ class Car {
     this.x = x;
     this.y = y;
     this.dirY;
-    this.mainElement = document.getElementsByClassName(this.mainClassName);
+    this.intervalId;
+    this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
     this.setCar();
   }
   setCar() {
@@ -26,10 +28,19 @@ class Car {
     this.car.style.position = "absolute";
   }
   move() {
-    this.y += this.dirY;
+    //move enemy not player
+    this.intervalId = setInterval(() => {
+      if (GAMEON) {
+        this.y += this.dirY;
+        this.draw();
+      } else {
+        clearInterval(this.intervalId);
+      }
+    }, 80);
   }
   reverseDirection() {
     this.y -= this.dirY;
+    this.draw();
   }
   detectXCollision(car2) {
     //if both car same row && touch then gameover
@@ -62,3 +73,33 @@ class Car {
     this.mainElement.appendChild(this.car);
   }
 }
+
+class LaneGame {
+  constructor(mainClassName, carTypeArray) {
+    this.mainClassName = mainClassName;
+    this.carTypeArray = carTypeArray;
+    this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
+    this.roadElement = document.querySelector(`.${this.mainClassName} .road`);
+    this.score = 0;
+    this.highScore;
+
+    //game elements
+    this.gameCanvas = document.createElement("div");
+    this.scoreBoard = document.createElement("div");
+    this.firstLane = document.createElement("div");
+    this.middleLane = document.createElement("div");
+    this.lastLane = document.createElement("div");
+
+    //css classes for styling
+    this.firstLane.classList.add("first-lane");
+    this.middleLane.classList.add("middle-lane");
+    this.lastLane.classList.add("last-lane");
+
+    //appendChild to parent Element
+    this.roadElement.appendChild(this.firstLane);
+    this.roadElement.appendChild(this.middleLane);
+    this.roadElement.appendChild(this.lastLane);
+  }
+}
+
+let pp = new LaneGame("game-container-1", "nth");
