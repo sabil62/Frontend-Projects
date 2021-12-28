@@ -4,6 +4,9 @@ let LANEWIDTH = 360;
 let CARHEIGHT = 116;
 let CARWIDTH = 60;
 let GAMEON = true;
+//45 (60) 45 (60) 45 (60) 45 = 360
+let X_POSITION = [30, 150, 268];
+let lanePosition = 1; //middlelane //0 is first lane 2 is last lane
 
 function generateRandom(min, max) {
   let difference = max - min;
@@ -39,6 +42,7 @@ class Car {
   setPosition(x, y) {
     this.x = x;
     this.y = y;
+    this.draw();
   }
   move() {
     //move enemy not player
@@ -164,18 +168,54 @@ class LaneGame {
       CarBoxFlex.appendChild(this.carElement[i]);
     }
     this.selectPlayer();
-    this.startGame();
+    // this.startGame();
+    this.onKeyPressed();
   }
   selectPlayer() {
     for (let i = 0; i < this.carElement.length; i++) {
       this.carElement[i].onclick = (e) => {
         this.player = new Car("road", true, this.carTypeArray[i]);
         console.log(this.carTypeArray[i]);
-        this.player.setPosition(30, 30);
+        this.player.setPosition(0, 30);
         this.hideModal();
-        // mainClassName, isPlayer, carType
       };
     }
+  }
+  onKeyPressed() {
+    //for whole webpage listening
+    document.addEventListener("keydown", (event) => {
+      let keyTyped = event.code;
+      switch (keyTyped) {
+        case "ArrowRight":
+          console.log(lanePosition);
+          console.log(X_POSITION[0]);
+          console.log(X_POSITION[1]);
+          console.log(X_POSITION[2]);
+          if (lanePosition >= 2) {
+            lanePosition = 2;
+            this.player.setPosition(X_POSITION[lanePosition], 0);
+            console.log(X_POSITION[1]);
+          } else {
+            lanePosition++;
+            this.player.setPosition(X_POSITION[lanePosition], 0);
+            console.log(X_POSITION[lanePosition]);
+          }
+
+          break;
+
+        case "ArrowLeft":
+          if (lanePosition <= 0) {
+            lanePosition = 0;
+            this.player.setPosition(X_POSITION[lanePosition], 0);
+          } else {
+            lanePosition--;
+            this.player.setPosition(X_POSITION[lanePosition], 0);
+          }
+
+        default:
+          break;
+      }
+    });
   }
 }
 
