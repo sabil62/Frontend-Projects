@@ -101,10 +101,11 @@
 .score-board {
   position: absolute;
   top: 640px;
-  height: 50px;
+  height: 104px;
   width: 500px;
   text-align: center;
   background-color: rgba(113, 61, 165, 0.158);
+  padding: 0.8rem;
 }
 .select-car-modal {
   position: fixed;

@@ -53,7 +53,7 @@ class Car {
       } else {
         clearInterval(this.intervalId);
       }
-    }, 80);
+    }, 60);
   }
   reverseDirection() {
     this.y -= this.dirY;
@@ -62,7 +62,7 @@ class Car {
   detectXCollision(car2) {
     //if both car same row && touch then gameover
 
-    if (LANEHEIGHT - CARHEIGHT <= this.y + CARHEIGHT && this.x === car2.x) {
+    if (this.x === car2.x && LANEHEIGHT - CARHEIGHT <= this.y + CARHEIGHT) {
       return true;
     } else {
       return false;
@@ -99,7 +99,7 @@ class LaneGame {
     this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
     this.roadElement = document.querySelector(`.${this.mainClassName} .road`);
     this.score = 0;
-    this.highScore;
+    this.highScore = 0;
     this.carElement = [];
     this.carElementImage = [];
     this.player = null;
@@ -143,10 +143,18 @@ class LaneGame {
     //bind
     this.loopGame.bind(this);
     this.selectCar.bind(this);
+
+    //score
+    // Retrieve
+
+    let localHighScore = localStorage.getItem("highscore");
+    if (localHighScore) {
+      this.highScore = localHighScore;
+    }
   }
 
   scoreCard() {
-    this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
+    this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1> <br/><h3>High Score: ${this.highScore}</h3>`;
   }
   showModal() {
     this.selectCarModal.style.display = "block";
@@ -235,9 +243,16 @@ class LaneGame {
     });
   }
   createEnemyCars() {
+    let time = 1800;
+    if (this.score >= 4) {
+      time = 1500;
+    }
+    if (this.score >= 12) time = 1000;
     let loopAnimation = setInterval(() => {
       let car = new Car("road", false, this.carTypeArray[generateRandom(0, 4)]);
-      car.setPosition(X_POSITION[generateRandom(1, 4)], -120);
+      let randomNum = generateRandom(0, 3);
+      //   console.log(randomNum + "dfsa" + X_POSITION[randomNum]);
+      car.setPosition(X_POSITION[randomNum], -120);
       //if more enemies (they can form at same place)
       if (this.enemyCar.length > 2) {
         for (let i = 0; i < this.enemyCar.length; i++) {
@@ -248,7 +263,7 @@ class LaneGame {
         }
       }
       this.enemyCar.push(car);
-    }, 3200);
+    }, time);
   }
 
   createGameOverModal() {
@@ -281,8 +296,6 @@ class LaneGame {
     enemyCar.splice(index, 1);
   }
   loopGame = () => {
-    // this.startGame();
-
     this.loopIntervalId = setInterval(() => {
       this.scoreCard();
       this.moveBackground();
@@ -291,10 +304,15 @@ class LaneGame {
         if (this.enemyCar[i].y - LANEHEIGHT >= 0) {
           this.score++;
           this.removeEnemyCar(this.enemyCar, i);
+          if (this.score >= this.highScore) {
+            this.highScore = this.score;
+          }
         } else {
           this.enemyCar[i].move();
 
           if (this.enemyCar[i].detectYCollision(this.player)) {
+            //score
+            localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
             console.log("y collision");
             GAMEON = false;
@@ -302,6 +320,8 @@ class LaneGame {
             this.player.reverseDirection();
             this.createGameOverModal();
           } else if (this.enemyCar[i].detectXCollision(this.player)) {
+            //score
+            localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
             console.log("x collision");
             GAMEON = false;
@@ -309,7 +329,7 @@ class LaneGame {
           }
         }
       }
-    }, 80);
+    }, 45);
   };
 }
 
