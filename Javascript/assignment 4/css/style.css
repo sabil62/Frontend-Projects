@@ -157,3 +157,24 @@
 .car-image:active {
   transform: scale(0.99);
 }
+.game-over {
+  font-size: 3.8rem;
+  font-weight: 800;
+  color: rgb(232, 235, 193);
+  text-shadow: 1px 1px 4px rgb(78, 78, 78);
+}
+.retry-button {
+  font-size: 1.6rem;
+  padding: 0.6rem 2rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  color: rgb(232, 235, 193);
+  text-shadow: 1px 1px 4px rgb(78, 78, 78);
+  background-color: rgb(95, 221, 95);
+  border: none;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.retry-button:hover {
+  background-color: rgb(143, 216, 34);
+}

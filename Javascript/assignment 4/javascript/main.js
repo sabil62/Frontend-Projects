@@ -24,8 +24,8 @@ class Car {
     //position variables
     this.car;
     this.x;
-    this.y;
-    this.dirY;
+    this.y = null;
+    this.dirY = 1;
     this.intervalId;
     this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
     this.setCar();
@@ -69,7 +69,7 @@ class Car {
   }
   detectYCollision(car2) {
     //same lane && if head collision
-    if (this.x === car2.x && this.y <= car2.y + CARHEIGHT) {
+    if (this.y <= car2.y + CARHEIGHT && this.x === car2.x) {
       return true;
     } else {
       return false;
@@ -101,8 +101,11 @@ class LaneGame {
     this.highScore;
     this.carElement = [];
     this.carElementImage = [];
-    this.player;
+    this.player = null;
     this.playerID;
+    this.enemyCar = [];
+    this.gameOverBox;
+    this.laneBackgroundMove = 0;
 
     //game elements
     // this.gameCanvas = document.createElement("div");
@@ -130,22 +133,32 @@ class LaneGame {
     this.roadLaneForAnim.appendChild(this.lastLane);
     this.mainElement.appendChild(this.scoreCountDisplay);
     this.mainElement.appendChild(this.selectCarModal);
-    this.selectCarModal.appendChild(this.selectCarWindow);
+    this.mainElement.appendChild(this.selectCarWindow);
 
-    this.displayCarModalBox();
+    this.displayCarBoxModal();
     // this.hideModal();
+
+    //bind
+    this.loopGame.bind(this);
+    this.selectCar.bind(this);
   }
 
   scoreCard() {
     this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
   }
-  showCarModalBox() {
+  showModal() {
     this.selectCarModal.style.display = "block";
   }
-  hideCarModalBox() {
+  hideModal() {
     this.selectCarModal.style.display = "none";
   }
-  displayCarModalBox() {
+  showCarBox() {
+    this.selectCarWindow.style.display = "block";
+  }
+  hideCarBox() {
+    this.selectCarWindow.style.display = "none";
+  }
+  displayCarBoxModal() {
     //title
     let Header = document.createElement("div");
     Header.innerHTML = `<h1 class="select-car-header"> Select The Car You Like</h1>`;
@@ -175,7 +188,8 @@ class LaneGame {
       this.carElement[i].onclick = (e) => {
         this.player = new Car("road", true, this.carTypeArray[i]);
         this.player.setPosition(X_POSITION[lanePosition], 0);
-        this.hideCarModalBox();
+        this.hideModal();
+        this.hideCarBox();
         this.startGame();
       };
     }
@@ -183,6 +197,8 @@ class LaneGame {
   startGame() {
     this.onKeyPressedActions();
     this.createEnemyCars();
+    this.loopGame();
+    // this.createGameOverModal();
   }
   onKeyPressedActions() {
     //for whole webpage listening
@@ -218,9 +234,83 @@ class LaneGame {
     let loopAnimation = setInterval(() => {
       let car = new Car("road", false, this.carTypeArray[generateRandom(0, 4)]);
       car.setPosition(X_POSITION[generateRandom(1, 4)], 60);
-      console.log("car created");
+      //if more enemies (they can form at same place)
+      if (this.enemyCar.length > 2) {
+        for (let i = 0; i < this.enemyCar.length; i++) {
+          let yDistBetnEnemy = car.y - this.enemyCar[i].y + 100;
+          if (Math.abs(yDistBetnEnemy) <= CARHEIGHT) {
+            car.y += yDistBetnEnemy;
+          }
+        }
+      }
+      this.enemyCar.push(car);
     }, 2000);
   }
+
+  createGameOverModal() {
+    this.showModal();
+    this.gameOverBox = document.createElement("div");
+    this.gameOverBox.classList.add("select-car-window");
+
+    this.gameOverBox.style.display = "flex";
+    this.gameOverBox.style.justifyContent = "center";
+    this.gameOverBox.style.alignItems = "center";
+    this.gameOverBox.style.flexDirection = "column";
+
+    this.gameOverBox.innerHTML = `<h1 class="game-over">Game Over</h1>
+    <button class="retry-button">Retry</button>`;
+
+    this.mainElement.appendChild(this.gameOverBox);
+    let btn = document.getElementsByClassName("retry-button")[0];
+    btn.onclick = (event) => {
+      this.hideGameOverModal();
+    };
+  }
+  hideGameOverModal() {
+    this.gameOverBox.style.display = "none";
+    this.hideModal();
+  }
+  moveBackground() {
+    this.laneBackgroundMove -= 9;
+    this.roadLaneForAnim.style.bottom = this.laneBackgroundMove + "px";
+  }
+  removeEnemyCar(enemyCar, index) {
+    let road = document.getElementsByClassName("road")[0];
+    road.removeChild(enemyCar[index].car);
+    enemyCar.splice(index, 1);
+  }
+  loopGame = () => {
+    // this.startGame();
+
+    let loopInterval = setInterval(() => {
+      this.scoreCard();
+      this.moveBackground();
+
+      for (let i = 0; i < this.enemyCar.length; i++) {
+        if (this.enemyCar[i].y - LANEHEIGHT >= 0) {
+          this.score++;
+          this.removeEnemyCar(this.enemyCar, i);
+        } else {
+          this.enemyCar[i].move();
+
+          if (this.enemyCar[i].detectYCollision(this.player)) {
+            clearInterval(loopInterval);
+            console.log("y collision");
+            GAMEON = false;
+            this.enemyCar[i].reverseDirection();
+            this.player.reverseDirection();
+            this.createGameOverModal();
+          } else if (this.enemyCar[i].detectXCollision(this.player)) {
+            clearInterval(loopInterval);
+            console.log("x collision");
+            GAMEON = false;
+            this.createGameOverModal();
+          }
+        }
+      }
+    }, 200);
+  };
 }
 
 let pp = new LaneGame("game-container-1", CARTYPES);
+// pp.loopGame();
