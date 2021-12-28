@@ -52,11 +52,12 @@
   position: relative;
 }
 
-.road-bg {
-  width: 154px;
+.road-lane-for-animation {
+  width: 360px;
   height: 20000px;
+
   position: absolute;
-  background-color: black;
+
   bottom: 0;
 }
 
@@ -98,4 +99,12 @@
   position: absolute;
   left: 240px;
   padding: 0 10px;
+}
+.score-board {
+  position: absolute;
+  top: 640px;
+  height: 50px;
+  width: 500px;
+  text-align: center;
+  background-color: rgba(113, 61, 165, 0.158);
 }

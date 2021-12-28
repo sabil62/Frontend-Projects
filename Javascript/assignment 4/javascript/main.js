@@ -5,6 +5,14 @@ let CARHEIGHT = 116;
 let CARWIDTH = 60;
 let GAMEON = true;
 
+function generateRandom(min, max) {
+  let difference = max - min;
+  let rand = Math.random();
+  rand = Math.floor(rand * difference);
+  rand = rand + min;
+  return rand;
+}
+
 class Car {
   constructor(mainClassName, x, y, isPlayer, carType) {
     this.mainClassName = mainClassName;
@@ -84,21 +92,29 @@ class LaneGame {
     this.highScore;
 
     //game elements
-    this.gameCanvas = document.createElement("div");
-    this.scoreBoard = document.createElement("div");
+    // this.gameCanvas = document.createElement("div");
+    this.scoreCountDisplay = document.createElement("div");
+    this.roadLaneForAnim = document.createElement("div");
     this.firstLane = document.createElement("div");
     this.middleLane = document.createElement("div");
     this.lastLane = document.createElement("div");
 
     //css classes for styling
+    this.roadLaneForAnim.classList.add("road-lane-for-animation");
     this.firstLane.classList.add("first-lane");
     this.middleLane.classList.add("middle-lane");
     this.lastLane.classList.add("last-lane");
+    this.scoreCountDisplay.classList.add("score-board");
 
     //appendChild to parent Element
-    this.roadElement.appendChild(this.firstLane);
-    this.roadElement.appendChild(this.middleLane);
-    this.roadElement.appendChild(this.lastLane);
+    this.roadElement.appendChild(this.roadLaneForAnim);
+    this.roadLaneForAnim.appendChild(this.firstLane);
+    this.roadLaneForAnim.appendChild(this.middleLane);
+    this.roadLaneForAnim.appendChild(this.lastLane);
+    this.mainElement.appendChild(this.scoreCountDisplay);
+  }
+  scoreCard() {
+    this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
   }
 }
 
