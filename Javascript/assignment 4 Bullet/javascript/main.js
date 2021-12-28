@@ -135,6 +135,45 @@ class Car {
   }
 }
 
+class Bullet {
+  constructor(container, player) {
+    this.container = document.getElementsByClassName(container)[0];
+    this.bullet = document.createElement("div");
+    this.bullet.classList.add("bullet");
+    this.x = player.x + CARWIDTH / 2;
+    this.y = LANEHEIGHT - CARHEIGHT - 10;
+    this.dirY = 6;
+  }
+  draw() {
+    this.bullet.style.left = this.x + "px";
+    this.bullet.style.top = this.y + "px";
+    this.container.appendChild(this.bullet);
+  }
+  move() {
+    if (GAMEON) {
+      this.y -= this.dirY * 6;
+      this.draw();
+    }
+  }
+  detectCollision(enemyCar) {
+    for (let i = 0; i < enemyCar.length; i++) {
+      if (
+        enemyCar[i].x <= this.x &&
+        this.x <= enemyCar[i].x + CARWIDTH &&
+        enemyCar[i].y >= 0
+      ) {
+        if (this.y <= enemyCar[i].y + CARHEIGHT) {
+          this.container.removeChild(enemyCar[i].car);
+          enemyCar.splice(i, 1);
+          return true;
+        }
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
 class LaneGame {
   constructor(mainClassName, carTypeArray) {
     this.mainClassName = mainClassName;
@@ -152,6 +191,7 @@ class LaneGame {
     this.laneBackgroundMove = 0;
     this.loopIntervalId;
     this.bullets = 10;
+    this.bulletArray = [];
 
     //game elements
     // this.gameCanvas = document.createElement("div");
@@ -288,10 +328,11 @@ class LaneGame {
           }
           break;
         case "Space":
-          let bullet = this.bullets;
-          if (bullet <= 10) {
-            this.bulletProjectilee();
-          }
+          // let bullet = this.bullets;
+          // if (bullet <= 10) {
+          //   this.bulletProjectilee();
+          // }
+          this.hitBullet();
           break;
 
         default:
@@ -299,22 +340,22 @@ class LaneGame {
       }
     });
   }
-  bulletProjectilee() {
-    this.player.throwProjectile();
-    this.bullets--;
-    if (this.bullets < 0) {
-      this.bullets = 0;
-    }
-    setTimeout(() => {}, 1000);
-    // detectYCollisionOfProjectile(ourCar)
-    let bulletInterval = setInterval(() => {
-      for (let i = 0; i < this.enemyCar.length; i++) {
-        if (this.enemyCar[i].detectYCollisionOfProjectile(this.player)) {
-          this.removeEnemyCar(this.enemyCar, i);
-        }
-      }
-    }, 60);
-  }
+  // bulletProjectilee() {
+  //   this.player.throwProjectile();
+  //   this.bullets--;
+  //   if (this.bullets < 0) {
+  //     this.bullets = 0;
+  //   }
+  //   setTimeout(() => {}, 1000);
+  //   // detectYCollisionOfProjectile(ourCar)
+  //   let bulletInterval = setInterval(() => {
+  //     for (let i = 0; i < this.enemyCar.length; i++) {
+  //       if (this.enemyCar[i].detectYCollisionOfProjectile(this.player)) {
+  //         this.removeEnemyCar(this.enemyCar, i);
+  //       }
+  //     }
+  //   }, 60);
+  // }
   createEnemyCars() {
     let time = 1800;
     if (this.score >= 4) {
@@ -363,15 +404,52 @@ class LaneGame {
     this.laneBackgroundMove -= 10;
     this.roadLaneForAnim.style.bottom = this.laneBackgroundMove + "px";
   }
+  hitBullet() {
+    console.log("hit bullet");
+    let bullet;
+    if (GAMEON) {
+      if (this.bullets > 0) {
+        this.bullets--;
+        bullet = new Bullet("road", this.player);
+        bullet.move();
+        this.bulletArray.push(bullet);
+      }
+    }
+  }
+  includeBullet() {
+    let a = null;
+    for (let i = 0; i < this.bulletArray.length; i++) {
+      if (this.bulletArray[i].y <= 0) {
+        this.removeBullet(this.bulletArray[i]);
+        this.bulletArray.splice(i, 1);
+      } else {
+        this.bulletArray[i].move();
+        a = this.bulletArray[i].detectCollision(this.enemyCar);
+        if (a) {
+          this.score++;
+          this.removeBullet(this.bulletArray[i]);
+          this.bulletArray.splice(i, 1);
+        }
+      }
+    }
+    for (let j = 0; j < this.enemyCar.length; j++) {
+      this.enemyCar[j].move();
+    }
+  }
   removeEnemyCar(enemyCar, index) {
     let road = document.getElementsByClassName("road")[0];
     road.removeChild(enemyCar[index].car);
     enemyCar.splice(index, 1);
   }
+  removeBullet(bull) {
+    let road = document.getElementsByClassName("road")[0];
+    road.removeChild(bull.bullet);
+  }
   loopGame = () => {
     this.loopIntervalId = setInterval(() => {
       this.scoreCard();
       this.moveBackground();
+      this.includeBullet();
 
       for (let i = 0; i < this.enemyCar.length; i++) {
         if (this.enemyCar[i].y - LANEHEIGHT >= 0) {
