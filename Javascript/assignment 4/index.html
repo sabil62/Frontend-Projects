@@ -8,6 +8,43 @@
     <title>Car Game</title>
   </head>
   <body>
+    <div class="container">
+      <div class="road">
+        <svg
+          viewBox="0 0 10 30"
+          xmlns="http://www.w3.org/2000/svg"
+          class="first-lane"
+        >
+          <!-- Dashes and gaps of the same size -->
+          <line
+            x1="3"
+            y1="0"
+            x2="3"
+            y2="490"
+            stroke="white"
+            stroke-dasharray="12"
+          />
+        </svg>
+        <svg
+          viewBox="0 0 10 30"
+          xmlns="http://www.w3.org/2000/svg"
+          class="second-lane"
+        >
+          <!-- Dashes and gaps of the same size -->
+          <line
+            x1="3"
+            y1="0"
+            x2="3"
+            y2="490"
+            stroke="white"
+            stroke-dasharray="12"
+          />
+        </svg>
+      </div>
+      <div class="box">
+        <div class="square"></div>
+      </div>
+    </div>
     <script src="./javascript/main.js"></script>
   </body>
 </html>
