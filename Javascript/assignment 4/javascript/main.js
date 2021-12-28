@@ -314,7 +314,7 @@ class LaneGame {
             //score
             localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
-            console.log("y collision");
+
             GAMEON = false;
             this.enemyCar[i].reverseDirection();
             this.player.reverseDirection();
@@ -323,7 +323,7 @@ class LaneGame {
             //score
             localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
-            console.log("x collision");
+
             GAMEON = false;
             this.createGameOverModal();
           }

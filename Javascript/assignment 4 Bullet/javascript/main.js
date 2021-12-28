@@ -30,6 +30,8 @@ class Car {
     this.mainElement = document.getElementsByClassName(this.mainClassName)[0];
     this.setCar();
     this.draw();
+    this.projectile;
+    this.bulletInterval;
   }
   setCar() {
     this.car = document.createElement("img");
@@ -37,6 +39,7 @@ class Car {
     this.car.style.width = CARWIDTH + "px";
     this.car.style.height = CARHEIGHT + "px";
     this.car.style.objectFit = "cover";
+    this.car.style.zIndex = "20";
     this.car.style.position = "absolute";
   }
   setPosition(x, y) {
@@ -54,6 +57,21 @@ class Car {
         clearInterval(this.intervalId);
       }
     }, 60);
+  }
+  throwProjectile() {
+    this.projectile = document.createElement("div");
+    this.projectile.classList.add("bullet");
+    this.projectile.style.bottom = this.y + "px";
+    this.projectile.style.left = this.x + 23 + "px";
+    this.projectile.style.zIndex = 4;
+
+    this.mainElement.appendChild(this.projectile);
+    let bulleetY = this.y;
+
+    this.bulletInterval = setInterval(() => {
+      bulleetY += 6;
+      this.projectile.style.bottom = bulleetY + "px";
+    }, 20);
   }
   reverseDirection() {
     this.y -= this.dirY;
@@ -108,6 +126,7 @@ class LaneGame {
     this.gameOverBox;
     this.laneBackgroundMove = 0;
     this.loopIntervalId;
+    this.bullets = 10;
 
     //game elements
     // this.gameCanvas = document.createElement("div");
@@ -154,7 +173,7 @@ class LaneGame {
   }
 
   scoreCard() {
-    this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1> <br/><h3>High Score: ${this.highScore}</h3>`;
+    this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1><br/><h2>Bullets: ${this.bullets}</h2> <br/><h3>High Score: ${this.highScore}</h3> `;
   }
   showModal() {
     this.selectCarModal.style.display = "block";
@@ -180,6 +199,11 @@ class LaneGame {
     let CarBoxFlex = document.createElement("div");
     CarBoxFlex.classList.add("car-box-flex");
     this.selectCarWindow.appendChild(CarBoxFlex);
+
+    //press spacebar for bullets
+    let spacebar = document.createElement("div");
+    spacebar.innerHTML = `<h3 class="select-car-down"> Press spacebar for bulletes</h3>`;
+    this.selectCarWindow.appendChild(spacebar);
 
     //include images
     for (let i = 0; i < this.carTypeArray.length; i++) {
@@ -216,6 +240,7 @@ class LaneGame {
     //for whole webpage listening
     document.addEventListener("keydown", (event) => {
       let keyTyped = event.code;
+      // event.code === 'Space'
       switch (keyTyped) {
         case "ArrowRight":
           if (lanePosition >= 2) {
@@ -236,11 +261,22 @@ class LaneGame {
             lanePosition--;
             this.player.setPosition(X_POSITION[lanePosition], 0);
           }
+          break;
+        case "Space":
+          let bullet = this.bullets;
+          if (bullet <= 10) {
+            this.bulletProjectilee();
+          }
+          break;
 
         default:
           break;
       }
     });
+  }
+  bulletProjectilee() {
+    this.player.throwProjectile();
+    this.bullets--;
   }
   createEnemyCars() {
     let time = 1800;
@@ -314,7 +350,7 @@ class LaneGame {
             //score
             localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
-            console.log("y collision");
+
             GAMEON = false;
             this.enemyCar[i].reverseDirection();
             this.player.reverseDirection();
@@ -323,7 +359,7 @@ class LaneGame {
             //score
             localStorage.setItem("highscore", this.score);
             clearInterval(this.loopIntervalId);
-            console.log("x collision");
+
             GAMEON = false;
             this.createGameOverModal();
           }

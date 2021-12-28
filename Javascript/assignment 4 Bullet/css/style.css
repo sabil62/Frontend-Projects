@@ -19,26 +19,6 @@
   background: #525252;
   overflow: hidden;
 }
-
-/* .first-lane {
-  position: absolute;
-  top: -540px;
-  left: 33%;
-  transform: translateX(-50%);
-  width: 34px;
-  height: 1134px;
-}
-
-.second-lane {
-  position: absolute;
-  top: -540px;
-  left: 66%;
-  transform: translateX(-50%);
-  width: 34px;
-  height: 1134px;
-} */
-
-/* color: #141518 */
 .game-container {
   width: 1000px;
   height: 350px;
@@ -101,7 +81,7 @@
 .score-board {
   position: absolute;
   top: 640px;
-  height: 104px;
+  height: 150px;
   width: 500px;
   text-align: center;
   background-color: rgba(113, 61, 165, 0.158);
@@ -136,6 +116,11 @@
   padding: 0.8rem;
   color: rgb(232, 235, 193);
   text-shadow: 1px 1px 4px rgb(78, 78, 78);
+}
+.select-car-down {
+  color: rgb(232, 235, 193);
+  text-shadow: 1px 1px 4px rgb(78, 78, 78);
+  text-align: center;
 }
 .car-box-flex {
   display: flex;
@@ -176,4 +161,12 @@
 }
 .retry-button:hover {
   background-color: rgb(143, 216, 34);
+}
+.bullet {
+  height: 20px;
+  width: 8px;
+  background-color: antiquewhite;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  position: absolute;
 }
