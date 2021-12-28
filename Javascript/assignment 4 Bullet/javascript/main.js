@@ -137,7 +137,7 @@ class Car {
 
 class Bullet {
   constructor(container, player) {
-    this.container = document.getElementsByClassName(container)[0];
+    this.container = document.getElementsByClassName("road")[0];
     this.bullet = document.createElement("div");
     this.bullet.classList.add("bullet");
     this.x = player.x + CARWIDTH / 2;
@@ -163,8 +163,10 @@ class Bullet {
         enemyCar[i].y >= 0
       ) {
         if (this.y <= enemyCar[i].y + CARHEIGHT) {
-          this.container.removeChild(enemyCar[i].car);
+          console.log(this.container);
           enemyCar.splice(i, 1);
+          this.container.removeChild(enemyCar[i].car);
+
           return true;
         }
       } else {
@@ -405,7 +407,6 @@ class LaneGame {
     this.roadLaneForAnim.style.bottom = this.laneBackgroundMove + "px";
   }
   hitBullet() {
-    console.log("hit bullet");
     let bullet;
     if (GAMEON) {
       if (this.bullets > 0) {
@@ -480,6 +481,7 @@ class LaneGame {
           }
         }
       }
+      for (let j = 0; j < this.enemyCar.length; j++) {}
     }, 45);
   };
 }
