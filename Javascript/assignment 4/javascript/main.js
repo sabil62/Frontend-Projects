@@ -132,26 +132,26 @@ class LaneGame {
     this.mainElement.appendChild(this.selectCarModal);
     this.selectCarModal.appendChild(this.selectCarWindow);
 
-    this.selectCarBox();
+    this.displayCarModalBox();
     // this.hideModal();
   }
 
   scoreCard() {
     this.scoreCountDisplay.innerHTML = `<h1>Score: ${this.score}</h1>`;
   }
-  showModal() {
+  showCarModalBox() {
     this.selectCarModal.style.display = "block";
   }
-  hideModal() {
+  hideCarModalBox() {
     this.selectCarModal.style.display = "none";
   }
-  selectCarBox() {
+  displayCarModalBox() {
     //title
     let Header = document.createElement("div");
     Header.innerHTML = `<h1 class="select-car-header"> Select The Car You Like</h1>`;
     this.selectCarWindow.appendChild(Header);
 
-    //box containing car imaes
+    //box containing car images
     let CarBoxFlex = document.createElement("div");
     CarBoxFlex.classList.add("car-box-flex");
     this.selectCarWindow.appendChild(CarBoxFlex);
@@ -167,38 +167,35 @@ class LaneGame {
       this.carElement[i].appendChild(this.carElementImage[i]);
       CarBoxFlex.appendChild(this.carElement[i]);
     }
-    this.selectPlayer();
-    // this.startGame();
-    this.onKeyPressed();
+    this.selectCar();
   }
-  selectPlayer() {
+
+  selectCar() {
     for (let i = 0; i < this.carElement.length; i++) {
       this.carElement[i].onclick = (e) => {
         this.player = new Car("road", true, this.carTypeArray[i]);
-        console.log(this.carTypeArray[i]);
-        this.player.setPosition(0, 30);
-        this.hideModal();
+        this.player.setPosition(X_POSITION[lanePosition], 0);
+        this.hideCarModalBox();
+        this.startGame();
       };
     }
   }
-  onKeyPressed() {
+  startGame() {
+    this.onKeyPressedActions();
+    this.createEnemyCars();
+  }
+  onKeyPressedActions() {
     //for whole webpage listening
     document.addEventListener("keydown", (event) => {
       let keyTyped = event.code;
       switch (keyTyped) {
         case "ArrowRight":
-          console.log(lanePosition);
-          console.log(X_POSITION[0]);
-          console.log(X_POSITION[1]);
-          console.log(X_POSITION[2]);
           if (lanePosition >= 2) {
             lanePosition = 2;
             this.player.setPosition(X_POSITION[lanePosition], 0);
-            console.log(X_POSITION[1]);
           } else {
             lanePosition++;
             this.player.setPosition(X_POSITION[lanePosition], 0);
-            console.log(X_POSITION[lanePosition]);
           }
 
           break;
@@ -216,6 +213,13 @@ class LaneGame {
           break;
       }
     });
+  }
+  createEnemyCars() {
+    let loopAnimation = setInterval(() => {
+      let car = new Car("road", false, this.carTypeArray[generateRandom(0, 4)]);
+      car.setPosition(X_POSITION[generateRandom(1, 4)], 60);
+      console.log("car created");
+    }, 2000);
   }
 }
 
