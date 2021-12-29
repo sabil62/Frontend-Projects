@@ -12,7 +12,7 @@ class Score {
   }
 
   draw(state) {
-    this.ctx.fillStyle = "#FFF";
+    this.ctx.fillStyle = "gray";
     this.ctx.strokeStyle = "black";
     if (state == 1) {
       this.ctx.lineWidth = 3;

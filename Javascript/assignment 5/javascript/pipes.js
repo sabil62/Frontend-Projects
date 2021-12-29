@@ -1,8 +1,9 @@
-class Pipe {
-  constructor(canvas, context, pipeImage) {
+class Pipes {
+  constructor(canvas, cntx, pipeImageTop, pipeImageBottom) {
     this.canvas = canvas;
-    this.context = context;
-    this.image = image;
+    this.cntx = cntx;
+    this.pipeImageTop = pipeImageTop;
+    this.pipeImageBottom = pipeImageBottom;
     this.gapAtleast = 90;
     this.wid = 60;
     this.height = 400;
@@ -16,24 +17,16 @@ class Pipe {
       let positionBottomY = pos.y + this.height + this.gapAtleast;
 
       //DRAW TOP PIPE
-      this.context.drawImage(
-        this.pipeImage,
-        560,
-        0,
-        this.wid,
-        this.height,
+      this.cntx.drawImage(
+        this.pipeImageTop,
         pos.x,
         pos.y,
         this.wid,
         this.height
       );
       //DRAW BOTTOM PIPE
-      this.context.drawImage(
-        this.pipeImage,
-        530,
-        0,
-        this.wid,
-        this.height,
+      this.cntx.drawImage(
+        this.pipeImageBottom,
         pos.x,
         positionBottomY,
         this.wid,

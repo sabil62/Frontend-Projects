@@ -1,10 +1,9 @@
 // getting ready
-class ReadSetGo {
+class ReadySetGo {
   constructor(canvas, ctx, getReadyImage) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.getReadyImage = getReadyImage;
-
     this.width = 180;
     this.height = 158;
     //to place in center
@@ -29,8 +28,6 @@ class GameOver {
     this.canvas = canvas;
     this.ctx = ctx;
     this.gameOverImage = gameOverImage;
-    this.sX = 176;
-    this.sY = 230;
     this.width = 228;
     this.height = 204;
     //to place in center

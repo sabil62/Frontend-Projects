@@ -15,8 +15,6 @@ class Bird {
     this.rotation = 0;
     this.jump = 4.5;
     //inside coordinates
-    this.sX = [280, 280, 280, 280];
-    this.sY = [114, 140, 165, 140];
     this.DEGREE = Math.PI / 180;
   }
   draw() {
@@ -25,7 +23,6 @@ class Bird {
     this.ctx.rotate(this.rotation);
     this.ctx.drawImage(
       this.image,
-      this.sX[this.frame],
       this.width,
       this.height,
       -this.width / 2,
