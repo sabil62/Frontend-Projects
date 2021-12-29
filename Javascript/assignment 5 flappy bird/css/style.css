@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16vh;
+}
+.game-container {
+  width: 400px;
+  height: 600px;
+  background-image: url("../images/bg.png");
+  overflow: hidden;
+  background-repeat: repeat-x;
+}
+
+/* asset background  */
+.first-bird {
+  background-image: url("../images/bird-1.png");
+}
+.second-bird {
+  background-image: url("../images/bird-1.png");
+}
+.third-bird {
+  background-image: url("../images/bird-1.png");
+}
+.game-over-box {
+  background-image: url("../images/gameover.png");
+  width: 180px;
+  height: 40px;
+  display: block;
+}
+.hide-game-over-box {
+  display: none;
+}
+.cylinder {
+  background-image: url("../images/cylinder.png");
+}
+.cylinder-down {
+  background-image: url("../images/cylinder-down.png");
+}
