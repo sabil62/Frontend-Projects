@@ -40,4 +40,9 @@ class BelowTile {
       this.height
     );
   }
+  update(state) {
+    if (state == 1) {
+      this.x = (this.x - this.dirX) % (this.width / 2);
+    }
+  }
 }
