@@ -14,13 +14,15 @@ class Pipes {
     this.maxYposition = -150;
   }
   draw() {
+    // console.log(this.position);
     for (let i = 0; i < this.position.length; i++) {
+      // console.log("image loaded");
       let pos = this.position[i];
       let positionBottomY = pos.y + this.height + this.gapAtleast;
 
       //DRAW TOP PIPE
       this.pipeImageTop.onload = (e) => {
-        console.log("image loaded");
+        // console.log("image loaded");
         this.ctx.drawImage(this.pipeImageTop, 0, 100, 70, 150);
         // this.ctx.drawImage(
         //   this.pipeImageTop,
