@@ -41,7 +41,6 @@ class Bird {
 
     //increment frame 1
     this.frame += frames % this.period == 0 ? 1 : 0;
-    this.frame = this.frame % this.sX.length;
 
     if (currentState == 0) {
       this.y = 150; //reset  positon of bird when new game
@@ -69,7 +68,7 @@ class Bird {
     }
   }
   //for new game
-  resetSpeed() {
+  resetBird() {
     this.speed = 0;
   }
 }

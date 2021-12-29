@@ -1,15 +1,17 @@
 class Pipes {
-  constructor(canvas, cntx, pipeImageTop, pipeImageBottom) {
+  constructor(canvas, ctx) {
     this.canvas = canvas;
-    this.cntx = cntx;
-    this.pipeImageTop = pipeImageTop;
-    this.pipeImageBottom = pipeImageBottom;
+    this.ctx = ctx;
+    this.pipeImageTop = new Image();
+    this.pipeImageBottom = new Image();
+    this.pipeImageTop.src = "./images/cylinder.png";
+    this.pipeImageBottom.src = "./images/cylinder-down.png";
     this.gapAtleast = 90;
     this.wid = 60;
     this.height = 400;
     this.dirX = 2;
     this.position = [];
-    this.maxYposition = -160;
+    this.maxYposition = -150;
   }
   draw() {
     for (let i = 0; i < this.position.length; i++) {
@@ -17,27 +19,34 @@ class Pipes {
       let positionBottomY = pos.y + this.height + this.gapAtleast;
 
       //DRAW TOP PIPE
-      this.cntx.drawImage(
-        this.pipeImageTop,
-        pos.x,
-        pos.y,
-        this.wid,
-        this.height
-      );
+      this.pipeImageTop.onload = (e) => {
+        console.log("image loaded");
+        this.ctx.drawImage(this.pipeImageTop, 0, 100, 70, 150);
+        // this.ctx.drawImage(
+        //   this.pipeImageTop,
+        //   pos.x,
+        //   pos.y,
+        //   this.wid,
+        //   this.height
+        // );
+      };
       //DRAW BOTTOM PIPE
-      this.cntx.drawImage(
-        this.pipeImageBottom,
-        pos.x,
-        positionBottomY,
-        this.wid,
-        this.height
-      );
+      this.pipeImageBottom.onload = (event) => {
+        this.ctx.drawImage(
+          this.pipeImageBottom,
+          pos.x,
+          positionBottomY,
+          this.wid,
+          this.height
+        );
+      };
     }
   }
   updatePipe(bird, score, frames, stateObject) {
+    // console.log(this.position);
     let stateNow = stateObject.getState();
     if (stateNow != 1) {
-      return;
+      return true;
     }
     if (frames % 100 == 0) {
       this.position.push({

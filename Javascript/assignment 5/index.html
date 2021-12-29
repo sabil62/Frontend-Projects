@@ -9,7 +9,10 @@
     <title>Flappy Bird</title>
   </head>
   <body>
-    <canvas id="flappyGame-1"></canvas>
+    <br />
+    <div class="center">
+      <canvas id="flappyGame-1"></canvas>
+    </div>
     <script src="./javascript/pipes.js"></script>
     <script src="./javascript/belowTile.js"></script>
     <script src="./javascript/score.js"></script>
@@ -18,6 +21,7 @@
     <script src="./javascript/game.js"></script>
     <script>
       let flappyBird = new Game("flappyGame-1", "Space");
+      flappyBird.loopAnimation();
     </script>
   </body>
 </html>
