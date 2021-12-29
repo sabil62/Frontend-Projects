@@ -4,11 +4,12 @@
   margin-top: 16vh;
 }
 .game-container {
-  width: 400px;
-  height: 600px;
+  width: 800px;
+  height: 480px;
   background-image: url("../images/bg.png");
   overflow: hidden;
   background-repeat: repeat-x;
+  position: relative;
 }
 
 /* asset background  */
@@ -16,10 +17,10 @@
   background-image: url("../images/bird-1.png");
 }
 .second-bird {
-  background-image: url("../images/bird-1.png");
+  background-image: url("../images/bird-2.png");
 }
 .third-bird {
-  background-image: url("../images/bird-1.png");
+  background-image: url("../images/bird-3.png");
 }
 .game-over-box {
   background-image: url("../images/gameover.png");
@@ -35,4 +36,100 @@
 }
 .cylinder-down {
   background-image: url("../images/cylinder-down.png");
+}
+.green-pipe {
+  position: absolute;
+  height: 100px;
+  width: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.pipe-first {
+  position: absolute;
+  left: 400px;
+}
+.pipe-second {
+  position: absolute;
+  left: 800px;
+}
+.pipe-third {
+  position: absolute;
+  left: 1200px;
+}
+.pipe-fourth {
+  position: absolute;
+  left: 1600px;
+}
+.falling-bird {
+  position: absolute;
+  background-image: url("../images/bird-2.png");
+  height: 25px;
+  width: 36px;
+  background-size: cover;
+  top: 45%;
+  left: 80px;
+}
+.start-game-container {
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+}
+.end-game-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.tap-to-play {
+  background-image: url("../images/tap-to-play.png");
+  height: 170px;
+  width: 180px;
+  cursor: pointer;
+}
+.display-none {
+  display: none;
+}
+.score {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.space-or-click {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: rgb(75, 71, 71);
+  text-shadow: 1px 1px rgba(128, 128, 128, 0.342);
+}
+.try {
+  font-size: 1.6rem;
+  padding: 0.6rem 2rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  color: rgb(232, 235, 193);
+  text-shadow: 1px 1px 4px rgb(78, 78, 78);
+  background-color: rgb(95, 221, 95);
+  border: none;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.try:hover {
+  background-color: rgb(143, 216, 34);
+}
+
+.end-game-container {
+  position: abosolute;
+  width: 800px;
+  height: 500px;
+  background-color: antiquewhite;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

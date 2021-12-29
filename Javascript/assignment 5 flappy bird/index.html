@@ -9,8 +9,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="game-container"></div>
+      <div class="game-container">
+        <div class="end-game-container">
+          <img src="./images/gameover.png" alt="" />
+          <button class="try">Try Again</button>
+        </div>
+        <div class="start-game-container">
+          <img
+            src="./images/Flappybird.png"
+            alt="flappy"
+            width="200px"
+            style="margin-bottom: 2rem"
+          />
+          <img src="./images/get-ready.png" alt="get-ready" width="200px" />
+          <div class="tap-to-play"></div>
+        </div>
+        <div class="space-or-click">Click or Press SpaceBar to Play</div>
+
+        <div class="score"></div>
+      </div>
     </div>
-    <script src="./javascript/main.js"></script>
+    <script src="./javascript/classObject.js"></script>
+    <script>
+      let flappyB = new FlappyBird("game-container");
+    </script>
   </body>
 </html>
