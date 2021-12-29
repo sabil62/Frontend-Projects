@@ -4,8 +4,7 @@ class ReadSetGo {
     this.canvas = canvas;
     this.ctx = ctx;
     this.getReadyImage = getReadyImage;
-    this.sX = 0;
-    this.sY = 230;
+
     this.width = 180;
     this.height = 158;
     //to place in center
@@ -16,10 +15,6 @@ class ReadSetGo {
     if (state == 0) {
       this.ctx.drawImage(
         this.getReadyImage,
-        this.sX,
-        this.sY,
-        this.width,
-        this.height,
         this.x,
         this.y,
         this.width,
@@ -46,10 +41,6 @@ class GameOver {
     if (state == 2) {
       this.ctx.drawImage(
         this.gameOverImage,
-        this.sX,
-        this.sY,
-        this.width,
-        this.height,
         this.x,
         this.y,
         this.width,
