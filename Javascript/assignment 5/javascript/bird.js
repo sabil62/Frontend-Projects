@@ -18,16 +18,20 @@ class Bird {
     this.DEGREE = Math.PI / 180;
   }
   draw() {
+    console.log("bird drawn");
     this.ctx.save();
     this.ctx.translate(this.x, this.y);
     this.ctx.rotate(this.rotation);
-    this.ctx.drawImage(
-      this.image,
-      this.width,
-      this.height,
-      -this.width / 2,
-      -this.height / 2
-    );
+    this.image.onload = (e) => {
+      // this.ctx.drawImage(
+      //   this.image,
+      //   this.x,
+      //   this.y - 150,
+      //   -this.width / 2,
+      //   -this.height / 2
+      // );
+      this.ctx.drawImage(this.image, 0, -150, 36, 28);
+    };
   }
   flapBirdWings() {
     this.speed = -this.jump;

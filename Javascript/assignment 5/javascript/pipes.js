@@ -23,7 +23,7 @@ class Pipes {
       //DRAW TOP PIPE
       this.pipeImageTop.onload = (e) => {
         // console.log("image loaded");
-        this.ctx.drawImage(this.pipeImageTop, 0, 100, 70, 150);
+        this.ctx.drawImage(this.pipeImageTop, 0, -150, 70, 150);
         // this.ctx.drawImage(
         //   this.pipeImageTop,
         //   pos.x,

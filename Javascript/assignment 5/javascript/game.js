@@ -1,9 +1,33 @@
+class NewGame {
+  constructor(canvasIdName) {
+    this.gameCanvas = document.getElementById(canvasIdName);
+    this.gameCanvas.height = "500";
+    this.gameCanvas.width = "460";
+    this.ctx = this.gameCanvas.getContext("2d");
+    this.drawBackground();
+  }
+  drawBackground() {
+    let bgImage = new Image();
+    bgImage.src = "./images/bg.png";
+    //background
+    document.onload = (e) => {
+      this.ctx.drawImage(bgImage, 0, -0, 235, 500);
+      this.ctx.drawImage(bgImage, 230, -0, 235, 500);
+    };
+    let imgg = new Image();
+    imgg.src = "./images/cylinder.png";
+    // imgg.onload = (e) => {
+    this.ctx.drawImage(imgg, 0, 0, 70, 150, 0, 0, 70, 150);
+    // };
+  }
+}
+
 class Game {
   constructor(canvasIdName, whichKeyToPress) {
     this.gameCanvas = document.getElementById(canvasIdName);
 
     this.gameCanvas.height = "500";
-    this.gameCanvas.width = "340";
+    this.gameCanvas.width = "440";
     //to create context
     this.ctx = this.gameCanvas.getContext("2d");
     this.frames = 0;
@@ -11,7 +35,7 @@ class Game {
     //Object variables
 
     this.whichKeyToPress = whichKeyToPress;
-
+    this.drawCanvas();
     let imagesArray = [
       "./images/cylinder.png",
       "./images/cylinder-down.png",
@@ -34,6 +58,7 @@ class Game {
     this.getReady = new ReadySetGo(this.gameCanvas, this.ctx, imgArr[5]);
     this.gameOver = new GameOver(this.gameCanvas, this.ctx, imgArr[6]);
     // this.drawCanvas();
+
     this.gamePlay();
     this.actionAfterKeyPressed();
   }
@@ -43,8 +68,10 @@ class Game {
     // let imgg = new Image();
     // imgg.src = "./images/cylinder.png";
     // imgg.onload = (e) => {
-    //   this.ctx.drawImage(imgg, 10, 100, 70, 150);
+    //   this.ctx.drawImage(imgg, 0, -150, 70, 150);
     // };
+    this.context.fillStyle = "#70c5ce";
+    this.context.fillRect(0, -150, this.canvas.width, this.canvas.height);
 
     //background Images
     let bgImage = new Image();
@@ -52,8 +79,13 @@ class Game {
     //background
     bgImage.onload = (e) => {
       //   console.log("loaded");
-      //   this.ctx.drawImage(bgImage, 0, 0, 300, 500);
-      this.ctx.drawImage(bgImage, 280, this.gameCanvas.height - 239, 280, 230);
+      // this.ctx.drawImage(bgImage, 0, -150, 235, 500);
+      // this.ctx.drawImage(bgImage, 230, -150, 235, 500);
+    };
+    let imgg = new Image();
+    imgg.src = "./images/cylinder.png";
+    imgg.onload = (e) => {
+      this.ctx.drawImage(imgg, 0, -150, 70, 150);
     };
     this.pipes.draw();
     this.belowBG.draw();
@@ -61,6 +93,11 @@ class Game {
     this.getReady.draw(currentState);
     this.gameOver.draw(currentState);
     this.scoreBoard.draw(currentState);
+    bgImage.onload = (e) => {
+      //   console.log("loaded");
+      this.ctx.drawImage(bgImage, 0, -150, 235, 500);
+      this.ctx.drawImage(bgImage, 230, -150, 235, 500);
+    };
   }
   gamePlay() {
     this.gameCanvas.onclick = (e) => {
@@ -132,5 +169,5 @@ class Game {
   }
 }
 
-let pp = new Game("flappyGame-1", 1);
-pp.loopAnimation();
+let pp = new NewGame("flappyGame-1", 1);
+// pp.loopAnimation();
