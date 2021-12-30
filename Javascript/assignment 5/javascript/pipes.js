@@ -1,11 +1,8 @@
 class Pipes {
-  constructor(canvas, ctx) {
+  constructor(canvas, ctx, pipeImage) {
     this.canvas = canvas;
     this.ctx = ctx;
-    this.pipeImageTop = new Image();
-    this.pipeImageBottom = new Image();
-    this.pipeImageTop.src = "./images/cylinder.png";
-    this.pipeImageBottom.src = "./images/cylinder-down.png";
+    this.pipeImage = pipeImage;
     this.gapAtleast = 90;
     this.wid = 60;
     this.height = 400;
@@ -14,6 +11,9 @@ class Pipes {
     this.maxYposition = -150;
   }
   draw() {
+    this.pipeImage.onload = (e) => {
+      this.ctx.drawImage(this.pipeImage, 2, 0, 82, 103, 100, 0, 82, 103);
+    };
     // console.log(this.position);
     for (let i = 0; i < this.position.length; i++) {
       // console.log("image loaded");
@@ -21,16 +21,8 @@ class Pipes {
       let positionBottomY = pos.y + this.height + this.gapAtleast;
 
       //DRAW TOP PIPE
-      this.pipeImageTop.onload = (e) => {
-        // console.log("image loaded");
-        this.ctx.drawImage(this.pipeImageTop, 0, -150, 70, 150);
-        // this.ctx.drawImage(
-        //   this.pipeImageTop,
-        //   pos.x,
-        //   pos.y,
-        //   this.wid,
-        //   this.height
-        // );
+      this.pipeImage.onload = (e) => {
+        this.ctx.drawImage(this.pipeImage, 2, 0, 82, 103, 100, 0, 82, 103);
       };
       //DRAW BOTTOM PIPE
       this.pipeImageBottom.onload = (event) => {
