@@ -8,7 +8,16 @@
     <title>Helix Animation</title>
   </head>
   <body>
-    <canvas id="helix-1"></canvas>
+    <div class="displ">
+      <canvas id="helix-1"></canvas>
+    </div>
+    <div class="displ">
+      <canvas id="helix-2"></canvas>
+    </div>
     <script src="./javascript/main.js"></script>
+    <script>
+      let helix2 = new Helix("helix-2", 240, 1200, 16, 36, 1, 40, 30, 70);
+      helix2.loopHelix();
+    </script>
   </body>
 </html>

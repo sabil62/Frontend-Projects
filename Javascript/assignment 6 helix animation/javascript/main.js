@@ -4,33 +4,57 @@ class Helix {
     canvasId,
     height,
     width,
-    color,
     smallCircleRadius,
     totalStrands,
-    totalDnaInStrand
+    totalDnaInStrand,
+    animationTime,
+    xDistCircle,
+    curveToHit
   ) {
     this.dnaRadius = smallCircleRadius;
     this.height = height;
     this.width = width;
-    this.amplitude = this.dnaRadius;
+    this.amplitude = 52;
+    if (curveToHit) {
+      this.amplitude = curveToHit;
+    }
+    this.animationTime = animationTime;
     //draw canvas
     this.gameCanvas = document.getElementById(canvasId);
     this.gameCanvas.height = height;
     this.gameCanvas.width = width;
     this.ctx = this.gameCanvas.getContext("2d");
-    this.color = color;
+
     this.totalStrands = totalStrands;
     this.rotateSpeed = 0;
     this.frameCount = 0;
     this.intervalId;
     this.totalDnaInStrand = totalDnaInStrand;
-    this.xDistCircle = Math.floor(Math.max(this.width / 24, this.dnaRadius));
+    if (xDistCircle) {
+      this.xDistCircle = xDistCircle;
+    } else {
+      this.xDistCircle = Math.floor(Math.max(this.width / 18, this.dnaRadius));
+    }
     // console.log(this.width + "f " + this.xDistCircle);
     this.smallCircleOffset = this.height / 20;
+    this.colorArray = [
+      "#FDBC87",
+      "#FDBE9A",
+      "#F8AB53",
+      "#F8AB53",
+      "#F8AB53",
+      "#F38229",
+      "#F38229",
+      "#E36F27",
+    ];
   }
-  createSmallCircles(xCord, yCord, radius) {
+  createSmallCircles(xCord, yCord, radius, colorIndex) {
     this.ctx.beginPath();
-    this.ctx.fillStyle = this.color;
+    // this.ctx.fillStyle = this.color;
+    this.ctx.fillStyle = this.colorArray[colorIndex];
+    if (this.totalDnaInStrand === 1) {
+      this.ctx.fillStyle = "#F8AB53";
+    }
     this.ctx.arc(xCord, yCord, radius, 0, Math.PI * 2);
     this.ctx.closePath();
     this.ctx.fill();
@@ -49,19 +73,19 @@ class Helix {
   rotateAllStrands(moveDirection, xCord) {
     let circleToHelixParam = 0;
     for (let i = 0; i < this.totalStrands; i++) {
-      circleToHelixParam = (i * 2 * Math.PI) / 18;
+      circleToHelixParam = (i * 2 * Math.PI) / 28;
       //   console.log(this.xDistCircle);
       xCord += this.xDistCircle;
       for (let j = 0; j < this.totalDnaInStrand; j++) {
         let yCord =
           100 +
           j * this.smallCircleOffset +
-          Math.sin(moveDirection + circleToHelixParam) * 42;
+          Math.sin(moveDirection + circleToHelixParam) * this.amplitude;
         let dnaSizeChangeByRotation =
-          (Math.cos(moveDirection - j * 0.1 + circleToHelixParam) + 1) * 0.5;
+          (Math.cos(moveDirection - j * 0.2 + circleToHelixParam) + 1) * 0.45;
 
         let radius = dnaSizeChangeByRotation * this.dnaRadius;
-        this.createSmallCircles(xCord, yCord, radius);
+        this.createSmallCircles(xCord, yCord, radius, j);
       }
     }
   }
@@ -77,10 +101,10 @@ class Helix {
   loopHelix() {
     this.intervalId = setInterval(() => {
       this.drawHelix();
-    }, 30);
+    }, this.animationTime);
   }
 }
 
 // helix(3,color, smallCircleRadius, totalStrands, totalDnaInStrand);
-let helix = new Helix("helix-1", 400, 600, "rgb(240,100,60)", 10, 10, 10);
+let helix = new Helix("helix-1", 400, 400, 10, 15, 10, 40);
 helix.loopHelix();
