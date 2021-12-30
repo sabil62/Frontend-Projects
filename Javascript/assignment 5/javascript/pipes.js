@@ -11,9 +11,8 @@ class Pipes {
     this.maxYposition = -150;
   }
   draw() {
-    this.pipeImage.onload = (e) => {
-      this.ctx.drawImage(this.pipeImage, 2, 0, 82, 103, 100, 0, 82, 103);
-    };
+    this.ctx.drawImage(this.pipeImage, 2, 0, 82, 103, 100, 0, 82, 103);
+
     // console.log(this.position);
     for (let i = 0; i < this.position.length; i++) {
       // console.log("image loaded");
