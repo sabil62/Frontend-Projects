@@ -1,31 +1,6 @@
-class NewGame {
-  constructor(canvasIdName) {
-    this.gameCanvas = document.getElementById(canvasIdName);
-    this.gameCanvas.height = "500";
-    this.gameCanvas.width = "460";
-    this.ctx = this.gameCanvas.getContext("2d");
-    this.drawBackground();
-  }
-  drawBackground() {
-    let bgImage = new Image();
-    bgImage.src = "./images/bg.png";
-    //background
-    document.onload = (e) => {
-      this.ctx.drawImage(bgImage, 0, -0, 235, 500);
-      this.ctx.drawImage(bgImage, 230, -0, 235, 500);
-    };
-    let imgg = new Image();
-    imgg.src = "./images/cylinder.png";
-    // imgg.onload = (e) => {
-    this.ctx.drawImage(imgg, 0, 0, 70, 150, 0, 0, 70, 150);
-    // };
-  }
-}
-
 class Game {
   constructor(canvasIdName, whichKeyToPress) {
     this.gameCanvas = document.getElementById(canvasIdName);
-
     this.gameCanvas.height = "500";
     this.gameCanvas.width = "440";
     //to create context
@@ -33,30 +8,22 @@ class Game {
     this.frames = 0;
     this.state = new State();
     //Object variables
-
     this.whichKeyToPress = whichKeyToPress;
-    this.drawCanvas();
-    let imagesArray = [
-      "./images/cylinder.png",
-      "./images/cylinder-down.png",
-      "./images/below-bg.png",
-      "./images/bird-1.png",
-      "./images/score-board.png",
-      "./images/get-ready.png",
-      "./images/gameover.png",
-    ];
-    let imgArr = [];
-    for (let i = 0; i < imagesArray.length; i++) {
-      let imgg = new Image();
-      imgg.src = imagesArray[i];
-      imgArr.push(imgg);
-    }
-    this.pipes = new Pipes(this.gameCanvas, this.ctx);
-    this.belowBG = new BelowTile(this.gameCanvas, this.ctx, imgArr[2]);
-    this.bird = new Bird(this.gameCanvas, this.ctx, imgArr[3], this.belowBG);
+
+    this.spriteImage = new Image();
+    this.spriteImage.src = "./images/sprite-sheet.png";
+
+    this.pipes = new Pipes(this.gameCanvas, this.ctx, this.spriteImage);
+    this.belowBG = new BelowTile(this.gameCanvas, this.ctx, this.spriteImage);
+    this.bird = new Bird(
+      this.gameCanvas,
+      this.ctx,
+      this.spriteImage,
+      this.belowBG
+    );
     this.scoreBoard = new Score(this.gameCanvas, this.ctx);
-    this.getReady = new ReadySetGo(this.gameCanvas, this.ctx, imgArr[5]);
-    this.gameOver = new GameOver(this.gameCanvas, this.ctx, imgArr[6]);
+    this.getReady = new ReadySetGo(this.gameCanvas, this.ctx, this.spriteImage);
+    this.gameOver = new GameOver(this.gameCanvas, this.ctx, this.spriteImage);
     // this.drawCanvas();
 
     this.gamePlay();
@@ -65,23 +32,13 @@ class Game {
 
   drawCanvas() {
     let currentState = this.state.getState();
-    // let imgg = new Image();
-    // imgg.src = "./images/cylinder.png";
-    // imgg.onload = (e) => {
-    //   this.ctx.drawImage(imgg, 0, -150, 70, 150);
-    // };
+
     this.context.fillStyle = "#70c5ce";
     this.context.fillRect(0, -150, this.canvas.width, this.canvas.height);
 
-    //background Images
-    let bgImage = new Image();
-    bgImage.src = "./images/bg.png";
-    //background
-    bgImage.onload = (e) => {
-      //   console.log("loaded");
-      // this.ctx.drawImage(bgImage, 0, -150, 235, 500);
-      // this.ctx.drawImage(bgImage, 230, -150, 235, 500);
-    };
+    this.ctx.drawImage(bgImage, 0, -150, 235, 500);
+    this.ctx.drawImage(bgImage, 230, -150, 235, 500);
+
     let imgg = new Image();
     imgg.src = "./images/cylinder.png";
     imgg.onload = (e) => {
@@ -169,5 +126,5 @@ class Game {
   }
 }
 
-let pp = new NewGame("flappyGame-1", 1);
+let pp = new Game("flappyGame-1", 1);
 // pp.loopAnimation();
