@@ -32,14 +32,14 @@ body {
   /* border-spacing: 30px 10px; */
 }
 .name-section {
-  font-size: 1.02rem;
+  font-size: 1.06rem;
   font-weight: 600;
 }
 a {
   text-decoration: none;
 }
 td {
-  padding: 10px 80px 10px 30px;
+  padding: 12px 80px 14px 30px;
   font-size: 0.86rem;
 }
 th {
